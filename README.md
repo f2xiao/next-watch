@@ -85,7 +85,7 @@ List the pages of your app with brief descriptions. You can show this visually, 
 
 ![](details.png)
 
-#### View Café Page
+#### User interested Page
 
 ![](ratings.png)
 
