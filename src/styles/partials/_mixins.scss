@@ -76,3 +76,44 @@
   @include flex($dir);
   justify-content: center;
 }
+
+// input and textarea
+@mixin inputStyles {
+  border: 0.0625rem solid $color-input;
+  background-color: $color-input-bg;
+  border-radius: 0.25rem;
+  font-family: "Avenir Next", Helvetica, sans-serif;
+
+  &:active {
+    border: 2px solid $color-cta;
+  }
+}
+
+// logo
+@mixin logo{
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+
+  &:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+  }
+
+  &--react:hover {
+    filter: drop-shadow(0 0 2em #61dafbaa);
+  }
+
+  @keyframes logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  &:nth-of-type(2) {
+    animation: logo-spin infinite 20s linear;
+  }
+}
