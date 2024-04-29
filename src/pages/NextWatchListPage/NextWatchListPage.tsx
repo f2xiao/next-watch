@@ -1,4 +1,4 @@
-import  from "./NextWatchListPage.scss";
+import "./NextWatchListPage.scss";
 
 const NextWatchListPage = () => {
   return <div>NextWatchListPage</div>;

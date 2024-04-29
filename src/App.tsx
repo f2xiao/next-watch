@@ -1,11 +1,12 @@
 import "./App.scss";
-import NextWatchDetailsPage from "./pages/NextWatchDetailsPage/NextWatchDetailsPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NextWatchListPage from "./pages/NextWatchListPage/NextWatchListPage";
+import NextWatchDetailsPage from "./pages/NextWatchDetailsPage/NextWatchDetailsPage";
 function App() {
   return (
     <>
-      <BrowserRouter className="app">
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<NextWatchListPage />} />
           <Route path="/nextwatches" element={<NextWatchListPage />} />
