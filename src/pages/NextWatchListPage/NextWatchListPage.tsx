@@ -4,6 +4,11 @@ import "./NextWatchListPage.scss";
 import axios from "axios";
 import { API_URL } from "../../utils/api";
 
+type Obj = {
+  id:string, 
+  title:string, 
+  backdropUrl:string,
+}
 
 const NextWatchListPage = () => {
   const [data, setData] = useState([])
@@ -11,10 +16,9 @@ const NextWatchListPage = () => {
   useEffect(() => { 
 
     const fetchShows = async () => { 
-      const response = await axios.get(`${API_URL}/api/tmdb`);
+      const response = await axios.get(`${API_URL}/api/watches`);
       setData(response.data);
       console.log(response.data);
-
      }
      fetchShows();
 
@@ -22,7 +26,9 @@ const NextWatchListPage = () => {
   return (
   <div className="next-watch-list-page">
     <div className="next-watch-list-page__cards">
-    {data.map((obj) => <Card className="next-watch-list-page__card" key={obj.TMDB_id} title={obj.title} backdrop={obj.backdrop} />)}
+      {data.map((obj : Obj) => <><div className="next-watch-list-page__wrapper">
+        <Card key={obj.id} title={obj.title} backdrop={obj.backdropUrl} />
+      </div></>)}
     </div>
   </div>
   );

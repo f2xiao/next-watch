@@ -1,15 +1,20 @@
 import './Card.scss'
 
+type CardProps = {
 
-const Card = ({className, title, backdrop}) => {
+  title:string, 
+  backdrop:string,
+}
+
+const Card = ({ title, backdrop}: CardProps) => {
   return (
-    <div className={className}>
-        <h2 className='card__title'>{title}</h2>
+    <div className="card">
         <img className='card__img' src={backdrop} alt={title} />
+        <h2 className='card__title'>{title}</h2>
     </div>
   )
 }
 
 
 
-export default Card
+export default Card;
