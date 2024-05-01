@@ -8,15 +8,9 @@
         @include responsive-property(gap, $padding-m, $padding-t);
     }
 
-    &__card{
-        position: relative;
+    &__wrapper{
+       
         @include flex-cross-center(column);
         @include responsive-property(flex-basis, 100%, calc(50% - $padding-t));
-
-         transition: scale 0.3s ease ;
-
-        &:hover{
-            scale: 0.8;
-        }
     }
 }

@@ -26,7 +26,9 @@ const NextWatchListPage = () => {
   return (
   <div className="next-watch-list-page">
     <div className="next-watch-list-page__cards">
-      {data.map((obj : Obj) => <Card className="next-watch-list-page__card" key={obj.id} title={obj.title} backdrop={obj.backdropUrl} />)}
+      {data.map((obj : Obj) => <><div className="next-watch-list-page__wrapper">
+        <Card key={obj.id} title={obj.title} backdrop={obj.backdropUrl} />
+      </div></>)}
     </div>
   </div>
   );
