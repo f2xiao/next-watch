@@ -4,8 +4,6 @@ import "./NextWatchListPage.scss";
 import axios from "axios";
 import { API_URL } from "../../utils/api";
 
-
-
 type Obj = {
   id:string, 
   title:string, 
