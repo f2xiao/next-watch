@@ -15,7 +15,7 @@ const HomePage = () => {
         <br />
         Share!
       </h1>
-      <Link to="/auth"> Get Started</Link>
+      <Link to="/auth/signup"> Get Started</Link>
     </div>
   );
 };
