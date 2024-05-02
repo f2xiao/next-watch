@@ -87,8 +87,25 @@
   &:active {
     border: 2px solid $color-cta;
   }
+}
 
-  @include responsive-property(max-width, 100%, 25rem, 28rem);
+// call to action button
+@mixin cta {
+  color: $color-cta-text;
+  text-transform: uppercase;
+  height: 2.5rem;
+  padding: 0 2rem;
+  border-radius: 0.25rem;
+  background: $color-cta;
+  width: 100%;
+
+  &:hover {
+    background: $color-cta-hover;
+  }
+
+  @include tablet {
+    width: 9.375rem;
+  }
 }
 
 // logo

@@ -2,7 +2,7 @@ import UserForm from "../../components/UserForm/UserForm";
 import "./SignUpPage.scss";
 import axios from "axios";
 import { API_URL } from "../../utils/api";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 type User = {
   username: string;
@@ -39,7 +39,15 @@ const SignUpPage = () => {
 
   return (
     <div>
-      <UserForm type="signup" handleSubmit={signUp} title="Signup" />
+      <h1>Signup</h1>
+      <UserForm type="signup" handleSubmit={signUp} />
+      <p className="signup-page__text">
+        Already has a account?{" "}
+        <Link className="login-page__link" to="/login">
+          Login
+        </Link>
+      </p>
+      <h2>Browse the watches list to create your nextwatch and share it!</h2>
     </div>
   );
 };

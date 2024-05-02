@@ -8,7 +8,7 @@ import SignUpPage from "./pages/SignUpPage/SignUpPage";
 
 function App() {
   return (
-    <>
+    <main className="app">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />}>
@@ -23,7 +23,7 @@ function App() {
           />
         </Routes>
       </BrowserRouter>
-    </>
+    </main>
   );
 }
 

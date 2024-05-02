@@ -3,7 +3,6 @@ import "./UserForm.scss";
 
 type UserFormProps = {
   type: string;
-  title: string;
   handleSubmit: (e: React.SyntheticEvent, user: User) => void;
 };
 
@@ -13,7 +12,7 @@ type User = {
   password: string;
 };
 
-const UserForm = ({ type, title, handleSubmit }: UserFormProps) => {
+const UserForm = ({ type, handleSubmit }: UserFormProps) => {
   const [user, setUser] = useState({
     username: "",
     email: "",
@@ -34,48 +33,44 @@ const UserForm = ({ type, title, handleSubmit }: UserFormProps) => {
   };
 
   return (
-    <>
-      <h1>{title}</h1>
-      <form
-        className="user-form"
-        onSubmit={() => {
-          handleSubmit(event, user);
-        }}
-      >
+    <form
+      className="user-form"
+      onSubmit={() => {
+        handleSubmit(event, user);
+      }}
+    >
+      <div className="user-form__entry">
         <label className="user-form__label" htmlFor="username">
           username
         </label>
-        <br />
         <input
           type="text"
           name="username"
           id="username"
           onChange={handleUserChange}
           value={user.username}
-        />{" "}
-        <br />
-        {type === "signup" ? (
-          <>
-            <label className="user-form__label" htmlFor="email">
-              email
-            </label>
-            <br />
-            <input
-              type="email"
-              name="email"
-              id="email"
-              onChange={handleUserChange}
-              value={user.email}
-            />
-            <br />
-          </>
-        ) : (
-          ""
-        )}
+        />
+      </div>
+      {type === "signup" ? (
+        <div className="user-form__entry">
+          <label className="user-form__label" htmlFor="email">
+            email
+          </label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            onChange={handleUserChange}
+            value={user.email}
+          />
+        </div>
+      ) : (
+        ""
+      )}
+      <div className="user-form__entry">
         <label className="user-form__label" htmlFor="password">
           password
         </label>
-        <br />
         <input
           type="text"
           name="password"
@@ -83,10 +78,11 @@ const UserForm = ({ type, title, handleSubmit }: UserFormProps) => {
           onChange={handleUserChange}
           value={user.password}
         />
-        <br />
+      </div>
+      <div className="user-form__cta">
         <button type="submit">{type}</button>
-      </form>
-    </>
+      </div>
+    </form>
   );
 };
 

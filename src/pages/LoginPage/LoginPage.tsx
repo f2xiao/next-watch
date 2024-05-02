@@ -40,14 +40,16 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
-      <UserForm type="login" title="Login" handleSubmit={login} />
-      <p>
-        No account? <Link to="/signup">Sign Up</Link>
+    <div className="login-page">
+      <h1>Login</h1>
+      <UserForm type="login" handleSubmit={login} />
+      <p className="login-page__text">
+        No account?{" "}
+        <Link className="login-page__link" to="/signup">
+          Sign Up
+        </Link>
       </p>
-      <h2>
-        Browse and star the watches list to create your nextwatch and share it!
-      </h2>
+      <h2>Browse the watches list to create your nextwatch and share it!</h2>
     </div>
   );
 };

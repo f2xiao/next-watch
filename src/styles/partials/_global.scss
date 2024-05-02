@@ -46,6 +46,7 @@ label {
 button {
   border: none;
   font-family: "Manrope", Helvetica, sans-serif;
+  @include cta;
 }
 
 a {
