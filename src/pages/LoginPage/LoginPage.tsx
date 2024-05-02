@@ -45,11 +45,10 @@ const LoginPage = () => {
       <UserForm type="login" handleSubmit={login} />
       <p className="login-page__text">
         No account?{" "}
-        <Link className="login-page__link" to="/signup">
+        <Link className="login-page__link" to="/auth/signup">
           Sign Up
         </Link>
       </p>
-      <h2>Browse the watches list to create your nextwatch and share it!</h2>
     </div>
   );
 };

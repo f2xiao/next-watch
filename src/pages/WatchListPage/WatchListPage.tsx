@@ -43,7 +43,7 @@ const WatchListPage = () => {
 
   return (
     <div className="next-watch-list-page">
-      {userInfo && <h1> {`Hello, ${userInfo.username}`}</h1>}
+      {userInfo.username && <h1> {`Hello, ${userInfo.username}`}</h1>}
       <div className="next-watch-list-page__cards">
         {data.map((obj: Obj) => (
           <div key={obj.id} className="next-watch-list-page__wrapper">

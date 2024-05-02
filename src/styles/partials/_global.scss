@@ -49,8 +49,8 @@ button {
   @include cta;
 }
 
-a {
-  text-decoration: none;
+a:visited {
+  color: inherit;
 }
 
 input {
