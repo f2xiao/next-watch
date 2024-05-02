@@ -1,3 +1,4 @@
+import { useState } from "react";
 import UserForm from "../../components/UserForm/UserForm";
 import { API_URL } from "../../utils/api";
 import "./LoginPage.scss";
@@ -12,6 +13,7 @@ type User = {
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const [showLogin, setShowLogin] = useState(false);
 
   const login = async (event: React.SyntheticEvent, user: User) => {
     event.preventDefault();
@@ -41,14 +43,35 @@ const LoginPage = () => {
 
   return (
     <div className="login-page">
-      <h1>Login</h1>
-      <UserForm type="login" handleSubmit={login} />
-      <p className="login-page__text">
-        No account?{" "}
-        <Link className="login-page__link" to="/auth/signup">
-          Sign Up
-        </Link>
-      </p>
+      <h1>
+        Browse the <Link to="/watches">watches</Link> ,
+        <br /> Create your nextwatch and
+        <br />
+        Share!
+      </h1>
+      {showLogin ? (
+        <>
+          <h1>Login</h1>
+          <UserForm type="login" handleSubmit={login} />
+          <p className="login-page__text">
+            No account?{" "}
+            <Link className="login-page__link" to="/signup">
+              Sign Up
+            </Link>
+          </p>
+        </>
+      ) : (
+        <>
+          <button
+            className="login-page__cta"
+            onClick={() => {
+              setShowLogin(true);
+            }}
+          >
+            Get Started
+          </button>
+        </>
+      )}
     </div>
   );
 };

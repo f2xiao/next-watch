@@ -1,23 +1,22 @@
 import "./HomePage.scss";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate, useLocation, Outlet } from "react-router-dom";
 
-const HomePage = () => {
-  return (
-    <div className="app__wrapper">
-      {" "}
-      <h1>
-        Browse the{" "}
-        <Link className="home-apge__link" to="/watches">
-          watches
-        </Link>{" "}
-        ,
-        <br /> Create your nextwatch and
-        <br />
-        Share!
-      </h1>
-      <Link to="/auth/signup"> Get Started</Link>
-    </div>
-  );
+const AuthPage = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const authToken = localStorage.getItem("authToken");
+
+    if (!authToken) {
+      navigate("/login");
+    } else {
+      navigate("/nextwatch");
+    }
+  }, [location.pathname]);
+
+  return <Outlet />;
 };
 
-export default HomePage;
+export default AuthPage;
