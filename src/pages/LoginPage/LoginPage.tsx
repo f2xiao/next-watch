@@ -41,7 +41,7 @@ const LoginPage = () => {
 
   return (
     <div>
-      <UserForm type="login" title="Login" handleClick={login} />
+      <UserForm type="login" title="Login" handleSubmit={login} />
       <p>
         No account? <Link to="/signup">Sign Up</Link>
       </p>

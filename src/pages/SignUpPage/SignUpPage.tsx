@@ -39,7 +39,7 @@ const SignUpPage = () => {
 
   return (
     <div>
-      <UserForm type="signup" handleClick={signUp} title="Signup" />
+      <UserForm type="signup" handleSubmit={signUp} title="Signup" />
     </div>
   );
 };

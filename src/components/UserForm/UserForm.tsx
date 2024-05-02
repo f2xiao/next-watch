@@ -4,7 +4,7 @@ import "./UserForm.scss";
 type UserFormProps = {
   type: string;
   title: string;
-  handleClick: (e: React.SyntheticEvent, user: User) => void;
+  handleSubmit: (e: React.SyntheticEvent, user: User) => void;
 };
 
 type User = {
@@ -13,7 +13,7 @@ type User = {
   password: string;
 };
 
-const UserForm = ({ type, title, handleClick }: UserFormProps) => {
+const UserForm = ({ type, title, handleSubmit }: UserFormProps) => {
   const [user, setUser] = useState({
     username: "",
     email: "",
@@ -36,7 +36,12 @@ const UserForm = ({ type, title, handleClick }: UserFormProps) => {
   return (
     <>
       <h1>{title}</h1>
-      <form className="user-form">
+      <form
+        className="user-form"
+        onSubmit={() => {
+          handleSubmit(event, user);
+        }}
+      >
         <label className="user-form__label" htmlFor="username">
           username
         </label>
@@ -79,14 +84,7 @@ const UserForm = ({ type, title, handleClick }: UserFormProps) => {
           value={user.password}
         />
         <br />
-        <button
-          type="submit"
-          onClick={() => {
-            handleClick(event, user);
-          }}
-        >
-          {type}
-        </button>
+        <button type="submit">{type}</button>
       </form>
     </>
   );
