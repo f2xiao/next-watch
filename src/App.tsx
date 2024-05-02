@@ -1,24 +1,29 @@
 import "./App.scss";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NextWatchListPage from "./pages/NextWatchListPage/NextWatchListPage";
-import NextWatchDetailsPage from "./pages/NextWatchDetailsPage/NextWatchDetailsPage";
+import WatchListPage from "./pages/WatchListPage/WatchListPage";
+import WatchDetailsPage from "./pages/WatchDetailsPage/WatchDetailsPage";
+import HomePage from "./pages/HomePage/HomePage";
+import SignUpPage from "./pages/SignUpPage/SignUpPage";
+
 function App() {
   return (
-    <>
+    <main className="app">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<NextWatchListPage />} />
-          <Route path="/nextwatches" element={<NextWatchListPage />} />
-          <Route path="nextwatches/:Id" element={<NextWatchDetailsPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<HomePage />}>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/watches" element={<WatchListPage />} />
+            <Route path="watches/:Id" element={<WatchDetailsPage />} />
+          </Route>
+          <Route path="/signup" element={<SignUpPage />} />
           <Route
             path="*"
             element={<div className="app__wrapper">Not Found 404 🥲</div>}
           />
         </Routes>
       </BrowserRouter>
-    </>
+    </main>
   );
 }
 

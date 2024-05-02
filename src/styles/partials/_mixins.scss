@@ -82,15 +82,34 @@
   border: 0.0625rem solid $color-input;
   background-color: $color-input-bg;
   border-radius: 0.25rem;
-  font-family: "Avenir Next", Helvetica, sans-serif;
+  font-family: "Manrope", Helvetica, sans-serif;
 
   &:active {
     border: 2px solid $color-cta;
   }
 }
 
+// call to action button
+@mixin cta {
+  color: $color-cta-text;
+  text-transform: uppercase;
+  height: 2.5rem;
+  padding: 0 2rem;
+  border-radius: 0.25rem;
+  background: $color-cta;
+  width: 100%;
+
+  &:hover {
+    background: $color-cta-hover;
+  }
+
+  @include tablet {
+    width: 9.375rem;
+  }
+}
+
 // logo
-@mixin logo{
+@mixin logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
