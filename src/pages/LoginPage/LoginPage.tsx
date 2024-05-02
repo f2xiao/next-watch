@@ -1,7 +1,7 @@
 import UserForm from "../../components/UserForm/UserForm";
 import { API_URL } from "../../utils/api";
 import "./LoginPage.scss";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 type User = {
@@ -9,14 +9,6 @@ type User = {
   email: string;
   password: string;
 };
-
-type Data = {
-  token: string;
-};
-interface MyResponseData {
-  status: number;
-  data: Data;
-}
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -26,10 +18,10 @@ const LoginPage = () => {
     const { username, password } = user;
     //login the user
     try {
-      const response: AxiosResponse<MyResponseData> = await axios.post(
-        `${API_URL}/api/users/login`,
-        { username, password }
-      );
+      const response = await axios.post(`${API_URL}/api/users/login`, {
+        username,
+        password,
+      });
 
       if (response.status === 401) {
         console.log("Invalid username or password");

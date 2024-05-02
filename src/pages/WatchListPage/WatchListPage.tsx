@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
-import "./NextWatchListPage.scss";
-import axios, { AxiosResponse } from "axios";
+import "./WatchListPage.scss";
+import axios from "axios";
 import { API_URL } from "../../utils/api";
 
 type Obj = {
@@ -10,16 +10,7 @@ type Obj = {
   backdropUrl: string;
 };
 
-type Data = {
-  username: string;
-  email: string;
-};
-
-interface MyResponseData {
-  status: number;
-  data: Data;
-}
-const NextWatchListPage = () => {
+const WatchListPage = () => {
   const [data, setData] = useState([]);
   const [userInfo, setUserInfo] = useState({
     username: "",
@@ -27,14 +18,11 @@ const NextWatchListPage = () => {
   });
 
   const getUserInfo: (authToken: string) => void = async (authToken) => {
-    const response: AxiosResponse<MyResponseData> = await axios.get(
-      `${API_URL}/api/users`,
-      {
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      }
-    );
+    const response = await axios.get(`${API_URL}/api/users`, {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    });
 
     setUserInfo(response.data);
   };
@@ -43,7 +31,7 @@ const NextWatchListPage = () => {
     const fetchShows = async () => {
       const response = await axios.get(`${API_URL}/api/watches`);
       setData(response.data);
-      console.log(response.data);
+      // console.log(response.data);
     };
     fetchShows();
   }, []);
@@ -70,4 +58,4 @@ const NextWatchListPage = () => {
   );
 };
 
-export default NextWatchListPage;
+export default WatchListPage;
