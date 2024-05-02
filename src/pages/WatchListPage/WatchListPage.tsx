@@ -12,10 +12,7 @@ type Obj = {
 
 const WatchListPage = () => {
   const [data, setData] = useState([]);
-  const [userInfo, setUserInfo] = useState({
-    username: "",
-    email: "",
-  });
+  const [userInfo, setUserInfo] = useState({});
 
   const getUserInfo: (authToken: string) => void = async (authToken) => {
     const response = await axios.get(`${API_URL}/api/users`, {
