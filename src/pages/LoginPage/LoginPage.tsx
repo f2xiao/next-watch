@@ -1,9 +1,56 @@
-import './LoginPage.scss'
+import UserForm from "../../components/UserForm/UserForm";
+import { API_URL } from "../../utils/api";
+import "./LoginPage.scss";
+import axios, { AxiosResponse } from "axios";
+import { useNavigate } from "react-router-dom";
 
-const LoginPage = () => {
-  return (
-    <div>LoginPage</div>
-  )
+type User = {
+  username: string;
+  email: string;
+  password: string;
+};
+
+type Data = {
+  token: string;
+};
+interface MyResponseData {
+  status: number;
+  data: Data;
 }
 
-export default LoginPage
+const LoginPage = () => {
+  const navigate = useNavigate();
+  const login = async (event: React.SyntheticEvent, user: User) => {
+    event.preventDefault();
+    console.log(user);
+    const { username, password } = user;
+    //login the user
+    try {
+      const response: AxiosResponse<MyResponseData> = await axios.post(
+        `${API_URL}/api/users/login`,
+        { username, password }
+      );
+
+      if (response.status === 401) {
+        console.log("Invalid username or password");
+      }
+
+      if (response.status === 200) {
+        // save the token to the localStorage
+        // console.log(response.data);
+        localStorage.setItem("authToken", response.data.token);
+        navigate("/nextwatches");
+      }
+    } catch (error) {
+      console.log("Request failed", error);
+    }
+  };
+  return (
+    <div>
+      <h1>Login</h1>
+      <UserForm type="login" handleSubmit={login} />
+    </div>
+  );
+};
+
+export default LoginPage;

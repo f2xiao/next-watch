@@ -1,36 +1,72 @@
 import { useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
 import "./NextWatchListPage.scss";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { API_URL } from "../../utils/api";
 
 type Obj = {
-  id:string, 
-  title:string, 
-  backdropUrl:string,
+  id: string;
+  title: string;
+  backdropUrl: string;
+};
+
+type Data = {
+  username: string;
+  email: string;
+};
+
+interface MyResponseData {
+  status: number;
+  data: Data;
 }
-
 const NextWatchListPage = () => {
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
+  const [userInfo, setUserInfo] = useState({
+    username: "",
+    email: "",
+  });
 
-  useEffect(() => { 
+  const getUserInfo: (authToken: string) => void = async (authToken) => {
+    const response: AxiosResponse<MyResponseData> = await axios.get(
+      `${API_URL}/api/users`,
+      {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      }
+    );
 
-    const fetchShows = async () => { 
+    setUserInfo(response.data);
+  };
+
+  useEffect(() => {
+    const fetchShows = async () => {
       const response = await axios.get(`${API_URL}/api/watches`);
       setData(response.data);
       console.log(response.data);
-     }
-     fetchShows();
+    };
+    fetchShows();
+  }, []);
 
-   },[])
+  useEffect(() => {
+    const authToken = localStorage.getItem("authToken");
+
+    if (authToken) {
+      getUserInfo(authToken);
+    }
+  }, []);
+
   return (
-  <div className="next-watch-list-page">
-    <div className="next-watch-list-page__cards">
-      {data.map((obj : Obj) => <><div className="next-watch-list-page__wrapper">
-        <Card key={obj.id} title={obj.title} backdrop={obj.backdropUrl} />
-      </div></>)}
+    <div className="next-watch-list-page">
+      {userInfo && <h1>Hello, {userInfo.username}</h1>}
+      <div className="next-watch-list-page__cards">
+        {data.map((obj: Obj) => (
+          <div key={obj.id} className="next-watch-list-page__wrapper">
+            <Card title={obj.title} backdrop={obj.backdropUrl} />
+          </div>
+        ))}
+      </div>
     </div>
-  </div>
   );
 };
 

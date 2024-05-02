@@ -8,7 +8,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<NextWatchListPage />} />
+          <Route path="/" element={<LoginPage />} />
           <Route path="/nextwatches" element={<NextWatchListPage />} />
           <Route path="nextwatches/:Id" element={<NextWatchDetailsPage />} />
           <Route path="/login" element={<LoginPage />} />
