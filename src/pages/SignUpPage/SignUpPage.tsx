@@ -43,11 +43,10 @@ const SignUpPage = () => {
       <UserForm type="signup" handleSubmit={signUp} />
       <p className="signup-page__text">
         Already has a account?{" "}
-        <Link className="login-page__link" to="/login">
+        <Link className="login-page__link" to="/auth/login">
           Login
         </Link>
       </p>
-      <h2>Browse the watches list to create your nextwatch and share it!</h2>
     </div>
   );
 };
