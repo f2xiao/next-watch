@@ -3,7 +3,7 @@ import Card from "../../components/Card/Card";
 import "./WatchListPage.scss";
 import axios from "axios";
 import { API_URL } from "../../utils/api";
-
+import { Link } from "react-router-dom";
 type Obj = {
   id: string;
   title: string;
@@ -43,7 +43,16 @@ const WatchListPage = () => {
 
   return (
     <div className="next-watch-list-page">
-      {userInfo.username && <h1> {`Hello, ${userInfo.username}`}</h1>}
+      {userInfo.username && (
+        <div className="next-watch-list-page__user">
+          <p>
+            {" "}
+            <Link to="/nextwatch"> nextwatch</Link>
+          </p>
+          <h1> {`${userInfo.username}`} </h1>
+        </div>
+      )}
+
       <div className="next-watch-list-page__cards">
         {data.map((obj: Obj) => (
           <div key={obj.id} className="next-watch-list-page__wrapper">

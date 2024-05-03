@@ -2,8 +2,7 @@ import UserForm from "../../components/UserForm/UserForm";
 import "./SignUpPage.scss";
 import axios from "axios";
 import { API_URL } from "../../utils/api";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 type User = {
   username: string;
@@ -13,7 +12,6 @@ type User = {
 
 const SignUpPage = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const signUp = async (event: React.SyntheticEvent, user: User) => {
     event.preventDefault();
     console.log(user);
