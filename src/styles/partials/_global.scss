@@ -56,9 +56,6 @@ a:visited {
 input {
   width: 100%;
   @include inputStyles;
-
-  @include responsive-property(padding, 0.75rem, 1rem);
-  @include responsive-property(padding-left, 2rem, 2rem);
 }
 
 textarea {

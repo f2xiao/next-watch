@@ -1,33 +1,35 @@
 import { useEffect, useState } from "react";
-import Card from "../../components/Card/Card";
 import "./WatchListPage.scss";
 import axios from "axios";
 import { API_URL } from "../../utils/api";
 import { Link } from "react-router-dom";
-type Obj = {
-  id: string;
-  title: string;
-  backdropUrl: string;
+import CardList from "../../components/CardList/CardList";
+import UserForm from "../../components/UserForm/UserForm";
+
+type User = {
+  username: string;
+  emial: string;
+  nextwatches: [];
 };
 
 const WatchListPage = () => {
-  const [data, setData] = useState([]);
-  const [userInfo, setUserInfo] = useState({});
+  const [watches, setWatches] = useState([]);
+  const [user, setUser] = useState<null | User>(null);
 
-  const getUserInfo: (authToken: string) => void = async (authToken) => {
+  const getUser: (authToken: string) => void = async (authToken) => {
     const response = await axios.get(`${API_URL}/api/users`, {
       headers: {
         Authorization: `Bearer ${authToken}`,
       },
     });
 
-    setUserInfo(response.data);
+    setUser(response.data);
   };
 
   useEffect(() => {
     const fetchShows = async () => {
       const response = await axios.get(`${API_URL}/api/watches`);
-      setData(response.data);
+      setWatches(response.data);
       // console.log(response.data);
     };
     fetchShows();
@@ -37,29 +39,26 @@ const WatchListPage = () => {
     const authToken = localStorage.getItem("authToken");
 
     if (authToken) {
-      getUserInfo(authToken);
+      getUser(authToken);
     }
   }, []);
 
   return (
     <div className="next-watch-list-page">
-      {userInfo.username && (
-        <div className="next-watch-list-page__user">
-          <p>
-            {" "}
-            <Link to="/nextwatch"> nextwatch</Link>
-          </p>
-          <h1> {`${userInfo.username}`} </h1>
-        </div>
-      )}
-
-      <div className="next-watch-list-page__cards">
-        {data.map((obj: Obj) => (
-          <div key={obj.id} className="next-watch-list-page__wrapper">
-            <Card title={obj.title} backdrop={obj.backdropUrl} />
+      {user ? (
+        <>
+          <div className="next-watch-list-page__user">
+            <p>
+              {" "}
+              <Link to="/nextwatch"> nextwatch</Link>
+            </p>
+            <h1> {`${user.username}`} </h1>
           </div>
-        ))}
-      </div>
+        </>
+      ) : (
+        <UserForm type="signup" />
+      )}
+      <CardList data={watches} />
     </div>
   );
 };

@@ -1,12 +1,14 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 .user-form {
-  @include flex(column);
+  @include flex;
   gap: 1rem;
-  @include responsive-property(max-width, 100%, 25rem, 28rem);
+  @include responsive-property(flex-wrap, wrap, nowrap);
+  align-items: end;
   &__entry {
     @include flex;
-    flex-wrap: wrap;
+    flex-basis: 100%;
+    align-items: end;
   }
 
   &__label {

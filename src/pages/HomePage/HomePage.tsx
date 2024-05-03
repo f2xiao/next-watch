@@ -10,9 +10,7 @@ const AuthPage = () => {
     const authToken = localStorage.getItem("authToken");
 
     if (!authToken) {
-      navigate("/login");
-    } else {
-      navigate("/nextwatch");
+      navigate("/watches");
     }
   }, [location.pathname]);
 
