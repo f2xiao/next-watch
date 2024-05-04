@@ -16,7 +16,7 @@ function App() {
           <Route path="/" element={<HomePage />}>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/nextwatch" element={<NextWatchPage />} />
-            <Route path="watches/:Id" element={<WatchDetailsPage />} />
+            <Route path="/watches/:id" element={<WatchDetailsPage />} />
           </Route>
           <Route path="/watches" element={<WatchListPage />} />
           <Route path="/signup" element={<SignUpPage />} />

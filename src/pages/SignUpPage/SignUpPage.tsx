@@ -38,15 +38,25 @@ const SignUpPage = () => {
   };
 
   return (
-    <div>
-      <h1>Signup</h1>
-      <UserForm type="signup" handleSubmit={signUp} />
-      <p className="signup-page__text">
-        Already has a account?{" "}
-        <Link className="login-page__link" to="/login">
-          Login
-        </Link>
-      </p>
+    <div className="signup-page">
+      <h1 className="signup-page__title">
+        Browse the <Link to="/watches">watches</Link> ,
+        <br />
+        Create your nextwatch and
+        <br />
+        Share!
+      </h1>
+      <hr />
+      <div className="signup-page__form">
+        <h1>Signup</h1>
+        <UserForm type="signup" handleSubmit={signUp} />
+        <p className="signup-page__text">
+          Already has a account?{" "}
+          <Link className="login-page__link" to="/login">
+            Login
+          </Link>
+        </p>
+      </div>
     </div>
   );
 };

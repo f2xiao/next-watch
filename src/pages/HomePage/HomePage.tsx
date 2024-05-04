@@ -8,13 +8,18 @@ const AuthPage = () => {
 
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
+    console.log(location.pathname);
 
     if (!authToken) {
       navigate("/login");
     } else {
-      navigate("/nextwatch");
+      if (location.pathname === "/") {
+        navigate(`/watches`);
+      } else {
+        navigate(`${location.pathname}`);
+      }
     }
-  }, [location.pathname]);
+  }, [navigate, location.pathname]);
 
   return <Outlet />;
 };

@@ -56,7 +56,9 @@ const WatchListPage = () => {
       <div className="next-watch-list-page__cards">
         {data.map((obj: Obj) => (
           <div key={obj.id} className="next-watch-list-page__wrapper">
-            <Card title={obj.title} backdrop={obj.backdropUrl} />
+            <Link to={`/watches/${obj.id}`}>
+              <Card title={obj.title} backdrop={obj.backdropUrl} />
+            </Link>
           </div>
         ))}
       </div>
