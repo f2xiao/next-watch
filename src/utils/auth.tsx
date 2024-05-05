@@ -61,7 +61,7 @@ export const signup =
     }
   };
 
-export const logout = (navigate: (route: string) => void) => {
+export const logout = () => {
   localStorage.removeItem("authToken");
-  navigate("/login");
+  window.location.reload();
 };

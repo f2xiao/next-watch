@@ -1,7 +1,7 @@
 import "./Nav.scss";
 import { logout } from "../../utils/auth";
 import Button from "../../components/Button/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 type PropTypes = {
   link1: string;
@@ -12,7 +12,6 @@ type PropTypes = {
 };
 
 const Nav = ({ link1, link1_text, link2, link2_text, username }: PropTypes) => {
-  const navigate = useNavigate();
   return (
     <nav className="nav">
       <div className="nav__link">
@@ -24,7 +23,7 @@ const Nav = ({ link1, link1_text, link2, link2_text, username }: PropTypes) => {
         <Button
           text="logout"
           handleClick={() => {
-            logout(navigate);
+            logout();
           }}
         />
       </div>
