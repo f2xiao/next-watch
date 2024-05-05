@@ -1,56 +1,51 @@
-import { useEffect, useState } from "react";
-import Card from "../../components/Card/Card";
 import "./WatchListPage.scss";
 import axios from "axios";
 import { API_URL } from "../../utils/api";
+import { useEffect, useState } from "react";
+import Nav from "../../components/Nav/Nav";
+import CardList from "../../components/CardList/CardList";
 
-type Obj = {
+type User = {
+  username: string;
+  emial: string;
+  share: boolean;
+  nextwatches: [];
   id: string;
-  title: string;
-  backdropUrl: string;
 };
 
 const WatchListPage = () => {
-  const [data, setData] = useState([]);
-  const [userInfo, setUserInfo] = useState({});
-
-  const getUserInfo: (authToken: string) => void = async (authToken) => {
+  const [user, setUser] = useState<null | User>(null);
+  const getUser: (authToken: string) => void = async (authToken) => {
     const response = await axios.get(`${API_URL}/api/users`, {
       headers: {
         Authorization: `Bearer ${authToken}`,
       },
     });
+    console.log(response.data);
 
-    setUserInfo(response.data);
+    setUser(response.data);
   };
-
+  const authToken = localStorage.getItem("authToken");
   useEffect(() => {
-    const fetchShows = async () => {
-      const response = await axios.get(`${API_URL}/api/watches`);
-      setData(response.data);
-      // console.log(response.data);
-    };
-    fetchShows();
-  }, []);
-
-  useEffect(() => {
-    const authToken = localStorage.getItem("authToken");
-
     if (authToken) {
-      getUserInfo(authToken);
+      getUser(authToken);
     }
-  }, []);
+  }, [authToken]);
 
   return (
     <div className="next-watch-list-page">
-      {userInfo.username && <h1> {`Hello, ${userInfo.username}`}</h1>}
-      <div className="next-watch-list-page__cards">
-        {data.map((obj: Obj) => (
-          <div key={obj.id} className="next-watch-list-page__wrapper">
-            <Card title={obj.title} backdrop={obj.backdropUrl} />
-          </div>
-        ))}
-      </div>
+      {user && (
+        <>
+          <Nav
+            link1="/watches"
+            link1_text="Home"
+            link2="/nextwatch"
+            link2_text="Nextwatch"
+            username={user.username}
+          />
+        </>
+      )}
+      <CardList isLoggedIn={Boolean(user)} />
     </div>
   );
 };

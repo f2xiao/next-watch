@@ -1,8 +1,7 @@
-import "./HomePage.scss";
 import { useEffect } from "react";
 import { useNavigate, useLocation, Outlet } from "react-router-dom";
 
-const AuthPage = () => {
+const HomePage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -12,11 +11,15 @@ const AuthPage = () => {
     if (!authToken) {
       navigate("/login");
     } else {
-      navigate("/nextwatch");
+      if (location.pathname === "/") {
+        navigate("/watches");
+      } else {
+        navigate(`${location.pathname}`);
+      }
     }
   }, [location.pathname]);
 
   return <Outlet />;
 };
 
-export default AuthPage;
+export default HomePage;
