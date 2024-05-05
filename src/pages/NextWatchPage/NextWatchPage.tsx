@@ -4,6 +4,7 @@ import { API_URL } from "../../utils/api";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Nav from "../../components/Nav/Nav";
+import Button from "../../components/Button/Button";
 
 type Watch = {
   id: string;
@@ -48,6 +49,10 @@ const NextWatchPage = ({ username }: PropTypes) => {
     fetchNextWatches();
   }, []);
 
+  const deleteNextWatch = (id: string) => {
+    console.log(id);
+  };
+
   if (isFetching) {
     return <p>...Loading nextwatch data...</p>;
   }
@@ -79,7 +84,12 @@ const NextWatchPage = ({ username }: PropTypes) => {
               </td>
               <td>{obj.rating}</td>
               <td>
-                <button>delete</button>
+                <Button
+                  text="delete"
+                  handleClick={() => {
+                    deleteNextWatch(obj.id);
+                  }}
+                />
               </td>
             </tr>
           ))}
