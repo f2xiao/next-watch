@@ -1,0 +1,9 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.card-list {
+  @include flex-main-center;
+  flex-wrap: wrap;
+  // gap: 1rem;
+  @include responsive-property(gap, 1rem, 2rem, 3rem);
+}

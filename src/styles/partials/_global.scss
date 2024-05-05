@@ -40,13 +40,10 @@ button {
 label {
   color: $color-text-secondary;
   font-family: "Manrope", Helvetica, sans-serif;
-  // @include responsive-property(max-width, 100%, 25rem, 28rem);
 }
 
 button {
-  border: none;
   font-family: "Manrope", Helvetica, sans-serif;
-  @include cta;
 }
 
 a:visited {

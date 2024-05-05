@@ -1,0 +1,19 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+.banner {
+  overflow: hidden; /* Hide overflowing text */
+  white-space: nowrap; /* Prevent text from wrapping */
+  animation: typing-animation 5s linear;
+  height: 3rem;
+  padding: 1rem 0;
+
+  @include responsive-property(font-size, 1rem, 2rem);
+  @keyframes typing-animation {
+    from {
+      width: 0;
+    } /* Start with zero width */
+    to {
+      width: 100%;
+    } /* End with full width */
+  }
+}

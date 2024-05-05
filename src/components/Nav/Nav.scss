@@ -1,0 +1,17 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+.nav {
+  @include flex;
+  justify-content: space-between;
+  @include responsive-property(padding, 1rem 0, 2rem 0, 3rem 0);
+  @include responsive-property(font-size, 1rem, 1.5rem);
+  &__link {
+    @include flex;
+    gap: 1rem;
+    text-transform: capitalize;
+  }
+  &__user {
+    @include flex;
+    gap: 1rem;
+  }
+}

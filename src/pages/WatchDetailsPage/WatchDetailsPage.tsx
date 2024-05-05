@@ -4,19 +4,28 @@ import "./WatchDetailsPage.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { API_URL } from "../../utils/api";
+import Nav from "../../components/Nav/Nav";
 
-const WatchDetailsPage = () => {
-  const [data, setData] = useState({});
+type PropType = {
+  username: string;
+};
+
+const WatchDetailsPage = ({ username }: PropType) => {
+  const [data, setData] = useState({
+    id: "",
+    title: "",
+    description: "",
+    trailer_youtube: "",
+  });
+
   const [isFetching, setIsFetching] = useState(true);
   const { id } = useParams();
-  console.log(id);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`${API_URL}/api/watches/${id}`);
-        console.log(response.data);
         setData(response.data);
+
         setIsFetching(false);
       } catch (error) {
         console.log(error);
@@ -24,7 +33,7 @@ const WatchDetailsPage = () => {
     };
 
     fetchData();
-  }, []);
+  }, [id]);
 
   if (isFetching) {
     return <p>... Loading data ...</p>;
@@ -32,6 +41,13 @@ const WatchDetailsPage = () => {
 
   return (
     <div>
+      <Nav
+        link1="/watches"
+        link1_text="Home"
+        link2="/nextwatch"
+        link2_text="Nextwatch"
+        username={username}
+      />
       <WatchDetails watchObj={data} />
     </div>
   );

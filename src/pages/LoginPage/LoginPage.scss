@@ -1,12 +1,9 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
 .login-page {
-  &__text {
-    padding-top: 1rem;
-  }
-  &__link {
-    text-decoration: underline;
-  }
-
-  &__cta {
-    padding: 0;
-  }
+  min-height: 100vh;
+  @include responsive-margin;
+  @include flex(column);
+  justify-content: center;
+  // align-items: center;
 }
