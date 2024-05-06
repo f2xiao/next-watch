@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./SharedPage.scss";
 import { getAllShared } from "../../utils/user";
 import Nav from "../../components/Nav/Nav";
+import { Link } from "react-router-dom";
 
 type PropType = {
   username: string;
@@ -32,7 +33,7 @@ const SharedPage = ({ username }: PropType) => {
     fetchAllShared();
   }, []);
   return (
-    <div>
+    <div className="shared-page">
       <Nav
         link1="/"
         link1_text="home"
@@ -43,15 +44,23 @@ const SharedPage = ({ username }: PropType) => {
       <div>
         {data.map((obj: Obj) => (
           <div key={obj.id}>
-            <p>{obj.username}</p>
+            <p className="shared-page__username">{`from ${
+              obj.username === username ? "me" : obj.username
+            }`}</p>
             <ul>
               {obj.nextwatches.map((nextwatch, index) => (
-                <li className="slide-wrapper" key={nextwatch.watch_id}>
+                <li
+                  key={nextwatch.watch_id}
+                  style={{ width: `${100 / obj.nextwatches.length}%` }}
+                >
                   {/* <div>{`${index + 1}/${obj.nextwatches.length}`}</div> */}
-                  <img
-                    alt={`${nextwatch.title} poster`}
-                    src={nextwatch.posterUrl}
-                  />
+                  <Link to={`/watches/${nextwatch.watch_id}`}>
+                    <img
+                      className="shared-page__img"
+                      alt={`${nextwatch.title} poster`}
+                      src={nextwatch.posterUrl}
+                    />
+                  </Link>
                   {/* <div>${nextwatch.title}</div> */}
                 </li>
               ))}

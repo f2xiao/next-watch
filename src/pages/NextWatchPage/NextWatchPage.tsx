@@ -98,6 +98,7 @@ const NextWatchPage = ({ user, updateUser }: PropTypes) => {
           <tr>
             <th>Title</th>
             <th>Rating</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -121,21 +122,23 @@ const NextWatchPage = ({ user, updateUser }: PropTypes) => {
           ))}
         </tbody>
       </table>
-      {user?.share ? (
-        <Button
-          text="unshare"
-          handleClick={() => {
-            shareNextWatch();
-          }}
-        />
-      ) : (
-        <Button
-          text="share"
-          handleClick={() => {
-            shareNextWatch();
-          }}
-        />
-      )}
+      <div className="nextwatch-page__button">
+        {user?.share ? (
+          <Button
+            text="unshare"
+            handleClick={() => {
+              shareNextWatch();
+            }}
+          />
+        ) : (
+          <Button
+            text="share"
+            handleClick={() => {
+              shareNextWatch();
+            }}
+          />
+        )}
+      </div>
     </div>
   );
 };
