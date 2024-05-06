@@ -44,7 +44,7 @@ const SharedPage = ({ username }: PropType) => {
       <div>
         {data.map((obj: Obj) => (
           <div key={obj.id}>
-            <p>{obj.username}</p>
+            <p className="shared-page__username">{`from ${obj.username}`}</p>
             <ul>
               {obj.nextwatches.map((nextwatch, index) => (
                 <li
