@@ -6,6 +6,10 @@
     @include flex;
     justify-content: center;
   }
+
+  &__subtitle {
+    font-weight: 600;
+  }
   &__button {
     @include flex;
     justify-content: end;

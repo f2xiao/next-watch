@@ -4,6 +4,9 @@ import { API_URL } from "../../utils/api";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Nav from "../../components/Nav/Nav";
+import Button from "../../components/Button/Button";
+import { deleteOne } from "../../utils/nextwatch";
+import { updateShare } from "../../utils/user";
 
 type Watch = {
   id: string;
@@ -18,35 +21,63 @@ type Obj = {
 };
 
 type PropTypes = {
-  username: string;
+  user: User;
+  updateUser: (updatedUser: User) => void;
 };
 
-const NextWatchPage = ({ username }: PropTypes) => {
+type User = {
+  username: string;
+  emial: string;
+  share: boolean;
+  nextwatches: [];
+  id: string;
+};
+
+const NextWatchPage = ({ user, updateUser }: PropTypes) => {
   const [nextwatches, setNextwatches] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
 
-  useEffect(() => {
+  const fetchNextWatches = async () => {
     const authToken = localStorage.getItem("authToken");
-    const fetchNextWatches = async () => {
-      try {
-        const response = await axios.get(`${API_URL}/api/nextwatches`, {
-          headers: {
-            Authorization: `Bearer ${authToken}`,
-          },
-        });
+    try {
+      const response = await axios.get(`${API_URL}/api/nextwatches`, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
 
-        if (response.status === 200) {
-          console.log(response.data);
-          setNextwatches(response.data);
-          setIsFetching(false);
-        }
-      } catch (error) {
-        console.log("can't get nextwatches", error);
+      if (response.status === 200) {
+        // console.log(response.data);
+        setNextwatches(response.data);
+        setIsFetching(false);
       }
-    };
-
+    } catch (error) {
+      console.log("can't get nextwatches", error);
+    }
+  };
+  useEffect(() => {
     fetchNextWatches();
   }, []);
+
+  const deleteNextWatch = async (id: string) => {
+    console.log(id);
+    try {
+      const response = await deleteOne(id);
+      // console.log(response);
+      fetchNextWatches();
+    } catch (error) {
+      console.log("can not delete", error);
+    }
+  };
+
+  const shareNextWatch = async () => {
+    try {
+      await updateShare();
+      updateUser({ ...user, share: !user.share });
+    } catch (error) {
+      console.log("can't share", error);
+    }
+  };
 
   if (isFetching) {
     return <p>...Loading nextwatch data...</p>;
@@ -59,7 +90,7 @@ const NextWatchPage = ({ username }: PropTypes) => {
         link1_text="Home"
         link2="/"
         link2_text=""
-        username={username}
+        username={user?.username}
       />
       <h1>NexWatch</h1>
       <table>
@@ -79,12 +110,32 @@ const NextWatchPage = ({ username }: PropTypes) => {
               </td>
               <td>{obj.rating}</td>
               <td>
-                <button>delete</button>
+                <Button
+                  text="remove"
+                  handleClick={() => {
+                    deleteNextWatch(obj.id);
+                  }}
+                />
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      {user?.share ? (
+        <Button
+          text="unshare"
+          handleClick={() => {
+            shareNextWatch();
+          }}
+        />
+      ) : (
+        <Button
+          text="share"
+          handleClick={() => {
+            shareNextWatch();
+          }}
+        />
+      )}
     </div>
   );
 };

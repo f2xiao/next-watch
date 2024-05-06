@@ -16,6 +16,7 @@ body {
 
 h1 {
   @include responsive-font(1.5rem, 2rem, 700, 2.0625rem, 2.75rem, 700);
+  text-transform: uppercase;
 }
 
 h2 {

@@ -98,7 +98,7 @@ const WatchDetails = ({ watchObj }: watchDetailsProps) => {
       <div className="watch-details__video">
         <YouTube videoId={trailer_youtube} opts={opts} onReady={onReady} />
       </div>
-      <h2 className="watch-details__title">Description</h2>
+      <h2 className="watch-details__subtitle">Description</h2>
       <p className="watch-details__body">{description}</p>
       <div className="watch-details__button">
         {nextwatchId ? (
