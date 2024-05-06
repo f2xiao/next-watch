@@ -23,7 +23,6 @@ type User = {
 
 function App() {
   const [user, setUser] = useState<null | User>(null);
-  // const [isLoading, setIsLoading] = useState(true);
   const getUser: (authToken: string) => void = async (authToken) => {
     const response = await axios.get(`${API_URL}/api/users`, {
       headers: {
@@ -33,14 +32,13 @@ function App() {
     console.log(response.data);
 
     setUser(response.data);
-    // setIsLoading(false);
   };
+  const authToken = localStorage.getItem("authToken");
   useEffect(() => {
-    const authToken = localStorage.getItem("authToken");
     if (authToken) {
       getUser(authToken);
     }
-  }, []);
+  }, [authToken]);
 
   const updateUser = (updatedUser: User) => {
     console.log(updatedUser);
@@ -48,15 +46,11 @@ function App() {
     setUser(updatedUser);
   };
 
-  // if (isLoading) {
-  //   return <p>...Loading...</p>;
-  // }
-
   return (
     <BrowserRouter>
       <div className="app">
         <Routes>
-          <Route path="/" element={<HomePage />}>
+          <Route path="/" element={<HomePage user={user} />}>
             <Route
               path="/login"
               element={!user ? <LoginPage /> : <Navigate to="/watches" />}
@@ -67,13 +61,10 @@ function App() {
             />
             <Route
               path="watches/:id"
-              element={<WatchDetailsPage username={user?.username || ""} />}
+              element={<WatchDetailsPage user={user} />}
             />
-            <Route path="/watches" element={<WatchListPage />} />
-            <Route
-              path="/shared"
-              element={<SharedPage username={user?.username || ""} />}
-            />
+            <Route path="/watches" element={<WatchListPage user={user} />} />
+            <Route path="/shared" element={<SharedPage user={user} />} />
           </Route>
           <Route
             path="/signup"

@@ -21,7 +21,7 @@ type Obj = {
 };
 
 type PropTypes = {
-  user: User;
+  user: User | null;
   updateUser: (updatedUser: User) => void;
 };
 

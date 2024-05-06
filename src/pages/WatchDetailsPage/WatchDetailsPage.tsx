@@ -6,11 +6,19 @@ import axios from "axios";
 import { API_URL } from "../../utils/api";
 import Nav from "../../components/Nav/Nav";
 
-type PropType = {
+type User = {
   username: string;
+  emial: string;
+  share: boolean;
+  nextwatches: [];
+  id: string;
 };
 
-const WatchDetailsPage = ({ username }: PropType) => {
+type PropType = {
+  user: User | null;
+};
+
+const WatchDetailsPage = ({ user }: PropType) => {
   const [data, setData] = useState({
     id: "",
     title: "",
@@ -46,7 +54,7 @@ const WatchDetailsPage = ({ username }: PropType) => {
         link1_text="Home"
         link2="/nextwatch"
         link2_text="Nextwatch"
-        username={username}
+        username={user?.username}
       />
       <WatchDetails watchObj={data} />
     </div>

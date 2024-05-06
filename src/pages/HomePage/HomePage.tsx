@@ -1,14 +1,27 @@
 import { useEffect } from "react";
 import { useNavigate, useLocation, Outlet } from "react-router-dom";
 
-const HomePage = () => {
+type User = {
+  username: string;
+  emial: string;
+  share: boolean;
+  nextwatches: [];
+  id: string;
+};
+
+type PropTypes = {
+  user: User | null;
+};
+
+const HomePage = ({ user }: PropTypes) => {
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    const authToken = localStorage.getItem("authToken");
+    // const authToken = localStorage.getItem("authToken");
+    console.log(user);
 
-    if (!authToken) {
+    if (!user) {
       navigate("/login");
     } else {
       if (location.pathname === "/") {
@@ -17,7 +30,7 @@ const HomePage = () => {
         navigate(`${location.pathname}`);
       }
     }
-  }, [location.pathname]);
+  }, [navigate, user, location.pathname]);
 
   return <Outlet />;
 };

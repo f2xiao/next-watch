@@ -27,7 +27,7 @@ export const login =
         // save the token to the localStorage
         // console.log(response.data);
         localStorage.setItem("authToken", response.data.token);
-        navigate("/watches");
+        window.location.reload();
       }
     } catch (error) {
       console.log("Request failed", error);
