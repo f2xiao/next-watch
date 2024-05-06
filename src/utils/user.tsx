@@ -8,3 +8,7 @@ export const updateShare = async () => {
   console.log(config);
   return await axios.put(`${baseUrl}/share`, "", config);
 };
+
+export const getAllShared = async () => {
+  return await axios.get(`${baseUrl}/allshared`, config);
+};

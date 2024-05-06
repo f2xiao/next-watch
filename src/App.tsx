@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { API_URL } from "./utils/api";
 import HomePage from "./pages/HomePage/HomePage";
+import SharedPage from "./pages/SharedPage/SharedPage";
 
 type User = {
   username: string;
@@ -69,6 +70,10 @@ function App() {
               element={<WatchDetailsPage username={user?.username || ""} />}
             />
             <Route path="/watches" element={<WatchListPage />} />
+            <Route
+              path="/shared"
+              element={<SharedPage username={user?.username || ""} />}
+            />
           </Route>
           <Route
             path="/signup"

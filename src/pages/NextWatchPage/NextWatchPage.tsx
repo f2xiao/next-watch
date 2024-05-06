@@ -88,8 +88,8 @@ const NextWatchPage = ({ user, updateUser }: PropTypes) => {
       <Nav
         link1="/watches"
         link1_text="Home"
-        link2="/"
-        link2_text=""
+        link2="/shared"
+        link2_text="shared"
         username={user?.username}
       />
       <h1>NexWatch</h1>
