@@ -23,15 +23,18 @@ type Watch = {
 
 const SharedPage = ({ username }: PropType) => {
   const [data, setData] = useState([]);
+  const [isFetching, setIsFetching] = useState(true);
   useEffect(() => {
     const fetchAllShared = async () => {
       const response = await getAllShared();
       console.log(response.data);
       setData(response.data);
+      setIsFetching(false);
     };
 
     fetchAllShared();
   }, []);
+
   return (
     <div className="shared-page">
       <Nav
@@ -41,33 +44,37 @@ const SharedPage = ({ username }: PropType) => {
         link2_text="nextwatch"
         username={username}
       />
-      <div>
-        {data.map((obj: Obj) => (
-          <div key={obj.id}>
-            <p className="shared-page__username">{`from ${
-              obj.username === username ? "me" : obj.username
-            }`}</p>
-            <ul>
-              {obj.nextwatches.map((nextwatch, index) => (
-                <li
-                  key={nextwatch.watch_id}
-                  style={{ width: `${100 / obj.nextwatches.length}%` }}
-                >
-                  {/* <div>{`${index + 1}/${obj.nextwatches.length}`}</div> */}
-                  <Link to={`/watches/${nextwatch.watch_id}`}>
-                    <img
-                      className="shared-page__img"
-                      alt={`${nextwatch.title} poster`}
-                      src={nextwatch.posterUrl}
-                    />
-                  </Link>
-                  {/* <div>${nextwatch.title}</div> */}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
+      {isFetching ? (
+        <p>...Loading data...</p>
+      ) : (
+        <div>
+          {data.map((obj: Obj) => (
+            <div key={obj.id}>
+              <p className="shared-page__username">{`from ${
+                obj.username === username ? "me" : obj.username
+              }`}</p>
+              <ul>
+                {obj.nextwatches.map((nextwatch, index) => (
+                  <li
+                    key={nextwatch.watch_id}
+                    style={{ width: `${100 / obj.nextwatches.length}%` }}
+                  >
+                    {/* <div>{`${index + 1}/${obj.nextwatches.length}`}</div> */}
+                    <Link to={`/watches/${nextwatch.watch_id}`}>
+                      <img
+                        className="shared-page__img"
+                        alt={`${nextwatch.title} poster`}
+                        src={nextwatch.posterUrl}
+                      />
+                    </Link>
+                    {/* <div>${nextwatch.title}</div> */}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

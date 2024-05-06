@@ -1,6 +1,6 @@
 import "./App.scss";
 import LoginPage from "./pages/LoginPage/LoginPage";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import WatchListPage from "./pages/WatchListPage/WatchListPage";
 import WatchDetailsPage from "./pages/WatchDetailsPage/WatchDetailsPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
@@ -79,7 +79,17 @@ function App() {
             path="/signup"
             element={user ? <Navigate to="/watches" /> : <SignUpPage />}
           />
-          <Route path="*" element={<div>Not Found 404 🥲</div>} />
+          <Route
+            path="*"
+            element={
+              <div className="app__notfound-page">
+                Not Found 404 🥲. Go back to{" "}
+                <Link className="app__link" to="/">
+                  homepage
+                </Link>
+              </div>
+            }
+          />
         </Routes>
       </div>
     </BrowserRouter>

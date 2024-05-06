@@ -15,6 +15,7 @@ type User = {
 
 const WatchListPage = () => {
   const [user, setUser] = useState<null | User>(null);
+  const [isFetching, setIsFetching] = useState(true);
   const getUser: (authToken: string) => void = async (authToken) => {
     const response = await axios.get(`${API_URL}/api/users`, {
       headers: {
@@ -24,6 +25,7 @@ const WatchListPage = () => {
     console.log(response.data);
 
     setUser(response.data);
+    setIsFetching(false);
   };
   const authToken = localStorage.getItem("authToken");
   useEffect(() => {
@@ -34,18 +36,18 @@ const WatchListPage = () => {
 
   return (
     <div className="next-watch-list-page">
-      {user && (
-        <>
-          <Nav
-            link1="/nextwatch"
-            link1_text="Nextwatch"
-            link2="/shared"
-            link2_text="shared"
-            username={user.username}
-          />
-        </>
+      <Nav
+        link1="/nextwatch"
+        link1_text="Nextwatch"
+        link2="/shared"
+        link2_text="shared"
+        username={user?.username}
+      />
+      {isFetching ? (
+        <p>...Loading data...</p>
+      ) : (
+        <CardList isLoggedIn={Boolean(user)} />
       )}
-      <CardList isLoggedIn={Boolean(user)} />
     </div>
   );
 };

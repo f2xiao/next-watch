@@ -79,10 +79,6 @@ const NextWatchPage = ({ user, updateUser }: PropTypes) => {
     }
   };
 
-  if (isFetching) {
-    return <p>...Loading nextwatch data...</p>;
-  }
-
   return (
     <div>
       <Nav
@@ -93,52 +89,59 @@ const NextWatchPage = ({ user, updateUser }: PropTypes) => {
         username={user?.username}
       />
       <h1>NexWatch</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Rating</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {nextwatches.map((obj: Obj) => (
-            <tr key={obj.id}>
-              <td>
-                <Link to={`/watches/${obj.watch_id.id}`}>
-                  {obj.watch_id.title}
-                </Link>
-              </td>
-              <td>{obj.rating}</td>
-              <td>
-                <Button
-                  text="remove"
-                  handleClick={() => {
-                    deleteNextWatch(obj.id);
-                  }}
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className="nextwatch-page__button">
-        {user?.share ? (
-          <Button
-            text="unshare"
-            handleClick={() => {
-              shareNextWatch();
-            }}
-          />
-        ) : (
-          <Button
-            text="share"
-            handleClick={() => {
-              shareNextWatch();
-            }}
-          />
-        )}
-      </div>
+      {isFetching ? (
+        <p>...Loading data...</p>
+      ) : (
+        <>
+          {" "}
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Rating</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {nextwatches.map((obj: Obj) => (
+                <tr key={obj.id}>
+                  <td>
+                    <Link to={`/watches/${obj.watch_id.id}`}>
+                      {obj.watch_id.title}
+                    </Link>
+                  </td>
+                  <td>{obj.rating}</td>
+                  <td>
+                    <Button
+                      text="remove"
+                      handleClick={() => {
+                        deleteNextWatch(obj.id);
+                      }}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className="nextwatch-page__button">
+            {user?.share ? (
+              <Button
+                text="unshare"
+                handleClick={() => {
+                  shareNextWatch();
+                }}
+              />
+            ) : (
+              <Button
+                text="share"
+                handleClick={() => {
+                  shareNextWatch();
+                }}
+              />
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 };
