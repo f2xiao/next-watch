@@ -37,10 +37,10 @@ const WatchListPage = () => {
       {user && (
         <>
           <Nav
-            link1="/watches"
-            link1_text="Home"
-            link2="/nextwatch"
-            link2_text="Nextwatch"
+            link1="/nextwatch"
+            link1_text="Nextwatch"
+            link2="/shared"
+            link2_text="shared"
             username={user.username}
           />
         </>
