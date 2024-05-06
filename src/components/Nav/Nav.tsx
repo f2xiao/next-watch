@@ -8,7 +8,7 @@ type PropTypes = {
   link1_text: string;
   link2: string;
   link2_text: string;
-  username: string;
+  username: string | undefined;
 };
 
 const Nav = ({ link1, link1_text, link2, link2_text, username }: PropTypes) => {

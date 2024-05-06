@@ -22,15 +22,17 @@ type User = {
 
 function App() {
   const [user, setUser] = useState<null | User>(null);
+  // const [isLoading, setIsLoading] = useState(true);
   const getUser: (authToken: string) => void = async (authToken) => {
     const response = await axios.get(`${API_URL}/api/users`, {
       headers: {
         Authorization: `Bearer ${authToken}`,
       },
     });
-    // console.log(response.data);
+    console.log(response.data);
 
     setUser(response.data);
+    // setIsLoading(false);
   };
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
@@ -38,6 +40,16 @@ function App() {
       getUser(authToken);
     }
   }, []);
+
+  const updateUser = (updatedUser: User) => {
+    console.log(updatedUser);
+
+    setUser(updatedUser);
+  };
+
+  // if (isLoading) {
+  //   return <p>...Loading...</p>;
+  // }
 
   return (
     <BrowserRouter>
@@ -50,7 +62,7 @@ function App() {
             />
             <Route
               path="/nextwatch"
-              element={<NextWatchPage username={user?.username || ""} />}
+              element={<NextWatchPage user={user} updateUser={updateUser} />}
             />
             <Route
               path="watches/:id"
