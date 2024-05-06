@@ -1,0 +1,45 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+.rating-range {
+  @include flex;
+  justify-content: space-between;
+  align-items: center;
+  &__slider {
+    padding: 0;
+    -webkit-appearance: none;
+    width: calc(100% - 2rem);
+    height: 0.3125rem;
+    background: #dbdfdf;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+      filter: drop-shadow(0 0 2rem #646cffaa);
+    }
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 1.25rem;
+      height: 1.25rem;
+      border: 0;
+      background: url("../../assets/logo/nextwatch.svg");
+      cursor: pointer;
+    }
+    &::-moz-range-thumb {
+      width: 1.25rem;
+      height: 1.25rem;
+      border: 0;
+      background: url("../../assets/logo/nextwatch.svg");
+      cursor: pointer;
+    }
+  }
+
+  &__value {
+    text-align: center;
+    flex-grow: 1;
+  }
+}

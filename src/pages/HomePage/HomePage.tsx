@@ -20,6 +20,7 @@ const HomePage = ({ user }: PropTypes) => {
   useEffect(() => {
     // const authToken = localStorage.getItem("authToken");
     console.log(user);
+    console.log(location.pathname);
 
     if (!user) {
       navigate("/login");

@@ -5,8 +5,9 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Nav from "../../components/Nav/Nav";
 import Button from "../../components/Button/Button";
-import { deleteOne } from "../../utils/nextwatch";
+import { deleteOne, updateNextwatchRating } from "../../utils/nextwatch";
 import { updateShare } from "../../utils/user";
+import RatingRange from "../../components/RatingRange/RatingRange";
 
 type Watch = {
   id: string;
@@ -36,6 +37,7 @@ type User = {
 const NextWatchPage = ({ user, updateUser }: PropTypes) => {
   const [nextwatches, setNextwatches] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
+  const [newRating, setNewRating] = useState("");
 
   const fetchNextWatches = async () => {
     const authToken = localStorage.getItem("authToken");
@@ -79,6 +81,22 @@ const NextWatchPage = ({ user, updateUser }: PropTypes) => {
     }
   };
 
+  const updateRating = async (id: string) => {
+    console.log(id);
+    try {
+      console.log("rating", newRating);
+
+      updateNextwatchRating(id, { rating: newRating });
+      // fetchNextWatches();
+    } catch (error) {
+      console.log("can't update the rating", error);
+    }
+  };
+  const updateValue = (value: string) => {
+    console.log("value", value);
+    setNewRating(value);
+  };
+
   return (
     <div>
       <Nav
@@ -100,6 +118,7 @@ const NextWatchPage = ({ user, updateUser }: PropTypes) => {
                 <th>Title</th>
                 <th>Rating</th>
                 <th>Action</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -110,7 +129,20 @@ const NextWatchPage = ({ user, updateUser }: PropTypes) => {
                       {obj.watch_id.title}
                     </Link>
                   </td>
-                  <td>{obj.rating}</td>
+                  <td>
+                    <RatingRange
+                      initialValue={obj.rating}
+                      updateValue={updateValue}
+                    />
+                  </td>
+                  <td>
+                    <Button
+                      text="update"
+                      handleClick={() => {
+                        updateRating(obj.id);
+                      }}
+                    />
+                  </td>
                   <td>
                     <Button
                       text="remove"
