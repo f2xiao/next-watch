@@ -71,33 +71,44 @@ TMDB: seedData.js is the script wrote to fetch and sanitize the initail data fro
 
 #### Signup Page
 
+tablet/desktop view
+
 ![](screenshots/signup-tablet-desktop.png)
 
 #### Login Page
 
+mobile view
+
 ![](screenshots/login-mobile.png)
+
+tablet/desktop view
+
 ![](screenshots/login-tablet-desktop.png)
 
 #### Home Page
 
+mobile view
+
 ![](screenshots/home-mobile.png)
+
+tablet view
+
 ![](screenshots/home-tablet.png)
+
+desktop view
 ![](screenshots/home-desktop.png)
 
 #### WatchDetails (tv/movie) Page
 
+mobile/tablet/desktop view
 ![](screenshots/watchDetails-tablet-desktop.png)
 
 #### Nextwatch Page
 
+mobile/tablet/desktop view
 ![](screenshots/nextwatch-tablet-desktop.png)
 
 #### Shared Page
 
+mobile/tablet/desktop view
 ![](screenshots/shared-tablet-desktop.png)
-
-### Data
-
-Describe your data and the relationships between them. You can show this visually using diagrams, or write it out.
-
-![](screenshots/data-diagram.png)
