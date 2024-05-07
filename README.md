@@ -104,8 +104,11 @@ desktop view
 
 #### WatchDetails (tv/movie) Page
 
-mobile/tablet/desktop view
+mobile/tablet/desktop view, not added in the nextwatch state
 ![](screenshots/watchDetails-tablet-desktop.png)
+
+mobile/tablet/desktop view, added in the nextwatch state
+![](screenshots/watchDetails-added-in-nextwatch-state.png)
 
 #### Nextwatch Page
 
