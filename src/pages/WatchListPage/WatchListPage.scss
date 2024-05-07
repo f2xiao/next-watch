@@ -1,0 +1,20 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+.next-watch-list-page {
+  &__user {
+    @include flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__cards {
+    @include flex-main-center;
+    flex-wrap: wrap;
+    @include responsive-property(gap, $padding-m, $padding-t);
+  }
+
+  &__wrapper {
+    @include flex-cross-center(column);
+    @include responsive-property(flex-basis, 100%, calc(50% - $padding-t));
+  }
+}

@@ -1,0 +1,17 @@
+@use "styles/partials/global" as *;
+@use "styles/partials/mixins" as *;
+.app {
+  min-height: 100vh;
+  @include responsive-margin;
+  &__notfound-page {
+    @include flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__link {
+    margin-left: 0.5rem;
+    text-transform: capitalize;
+  }
+}

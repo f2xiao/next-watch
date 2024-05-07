@@ -1,0 +1,16 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+.shared-page {
+  &__username {
+    font-size: medium;
+    text-transform: capitalize;
+    padding-bottom: 1rem;
+  }
+  &__img {
+    border-radius: 5px;
+    max-width: 100%;
+    &:hover {
+      filter: drop-shadow(0 0 2em #646cffaa);
+    }
+  }
+}

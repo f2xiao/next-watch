@@ -1,0 +1,96 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Manrope", Helvetica, sans-serif;
+  color: $color-text;
+  background: $color-bg;
+  @include responsive-font(0.8125rem, 1.125rem, 400, 0.875rem, 1.375rem, 400);
+}
+
+h1 {
+  @include responsive-font(1.5rem, 2rem, 700, 2.0625rem, 2.75rem, 700);
+  text-transform: uppercase;
+}
+
+h2 {
+  @include responsive-font(0.8125rem, 1.125rem, 700, 0.875rem, 1.375rem, 700);
+}
+
+h3 {
+  @include responsive-font(0.75rem, 1.25rem, 700, 0.75rem, 1.25rem, 700);
+}
+
+h1,
+h2,
+h3 {
+  @include responsive-property(padding-top, 1rem, 1.5rem, 2.25rem);
+  @include responsive-property(padding-bottom, 0.5rem, 1rem, 1.5rem);
+}
+
+label,
+button {
+  @include responsive-font(0.625rem, 1.25rem, 600, 0.75rem, 1.25rem, 600);
+}
+label {
+  color: $color-text-secondary;
+  font-family: "Manrope", Helvetica, sans-serif;
+}
+
+button {
+  font-family: "Manrope", Helvetica, sans-serif;
+}
+
+a:visited {
+  color: inherit;
+}
+
+input {
+  width: 100%;
+  @include inputStyles;
+
+  @include responsive-property(padding, 0.75rem, 1rem);
+  @include responsive-property(padding-left, 2rem, 2rem);
+}
+
+textarea {
+  resize: none;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  text-transform: uppercase;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.5rem;
+}
+
+thead {
+  border-bottom: 1px solid;
+}
+
+ul {
+  @include flex;
+  padding-bottom: 2rem;
+}
+li:hover {
+  z-index: 1;
+}
