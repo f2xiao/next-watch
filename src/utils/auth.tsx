@@ -1,5 +1,5 @@
-import axios from "axios";
-import { API_URL } from "./api";
+import { loginUser, signupUser } from "./user";
+
 type User = {
   username: string;
   email: string;
@@ -12,7 +12,7 @@ export const login = () => async (event: React.SyntheticEvent, user: User) => {
   const { username, password } = user;
   //login the user
   try {
-    const response = await axios.post(`${API_URL}/api/users/login`, {
+    const response = await loginUser({
       username,
       password,
     });
@@ -40,7 +40,7 @@ export const signup =
     const { username, password, email } = user;
     //login the user
     try {
-      const response = await axios.post(`${API_URL}/api/users/signup`, {
+      const response = await signupUser({
         username,
         password,
         email,

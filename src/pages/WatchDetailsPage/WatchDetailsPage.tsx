@@ -2,9 +2,8 @@ import { useParams } from "react-router-dom";
 import WatchDetails from "../../components/WatchDetails/WatchDetails";
 import "./WatchDetailsPage.scss";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { API_URL } from "../../utils/api";
 import Nav from "../../components/Nav/Nav";
+import { getOne } from "../../utils/watch";
 
 type User = {
   username: string;
@@ -31,7 +30,7 @@ const WatchDetailsPage = ({ user }: PropType) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${API_URL}/api/watches/${id}`);
+        const response = await getOne(id);
         setData(response.data);
 
         setIsFetching(false);

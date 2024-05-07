@@ -1,9 +1,8 @@
-import axios from "axios";
 import Button from "../Button/Button";
 import "./WatchDetails.scss";
 import YouTube, { YouTubeEvent } from "react-youtube";
-import { API_URL } from "../../utils/api";
 import { useEffect, useState } from "react";
+import { getOneByWatchId, createOne, deleteOne } from "../../utils/nextwatch";
 
 type Watch = {
   id: string;
@@ -21,19 +20,11 @@ const WatchDetails = ({ watchObj }: watchDetailsProps) => {
   const [nextwatchId, setNextWatchId] = useState<string>("");
 
   useEffect(() => {
-    const authToken = localStorage.getItem("authToken");
+    // const authToken = localStorage.getItem("authToken");
     const fetchNextWatches = async () => {
       try {
-        const response = await axios.get(
-          `${API_URL}/api/nextwatches/watch/${id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${authToken}`,
-            },
-          }
-        );
-
-        console.log("fetching...", response.data.id);
+        const response = await getOneByWatchId(id);
+        // console.log("fetching...", response.data.id);
 
         if (response.status === 200) {
           setNextWatchId(response.data.id);
@@ -62,15 +53,7 @@ const WatchDetails = ({ watchObj }: watchDetailsProps) => {
 
   const addToNextWatch = async (id: string) => {
     try {
-      const response = await axios.post(
-        `${API_URL}/api/nextwatches`,
-        { watch_id: id },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-          },
-        }
-      );
+      const response = await createOne({ watch_id: id });
       console.log("added", response.data.id);
 
       setNextWatchId(response.data.id);
@@ -81,11 +64,7 @@ const WatchDetails = ({ watchObj }: watchDetailsProps) => {
 
   const removeFromNextwatch = async (id: string) => {
     try {
-      const response = await axios.delete(`${API_URL}/api/nextwatches/${id}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-        },
-      });
+      const response = await deleteOne(id);
       console.log("removed", response);
       setNextWatchId("");
     } catch (error) {
