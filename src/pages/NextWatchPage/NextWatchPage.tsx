@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import "./NextWatchPage.scss";
-import { API_URL } from "../../utils/api";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import Nav from "../../components/Nav/Nav";
 import Button from "../../components/Button/Button";
-import { deleteOne, updateNextwatchRating } from "../../utils/nextwatch";
+import {
+  deleteOne,
+  getAll,
+  updateNextwatchRating,
+} from "../../utils/nextwatch";
 import { updateShare } from "../../utils/user";
 import RatingRange from "../../components/RatingRange/RatingRange";
 
@@ -40,13 +42,8 @@ const NextWatchPage = ({ user, updateUser }: PropTypes) => {
   const [newRating, setNewRating] = useState("");
 
   const fetchNextWatches = async () => {
-    const authToken = localStorage.getItem("authToken");
     try {
-      const response = await axios.get(`${API_URL}/api/nextwatches`, {
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      });
+      const response = await getAll();
 
       if (response.status === 200) {
         // console.log(response.data);

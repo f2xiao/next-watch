@@ -1,9 +1,8 @@
 import "./CardList.scss";
-import axios from "axios";
-import { API_URL } from "../../utils/api";
 import { useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
 import { Link } from "react-router-dom";
+import { getAll } from "../../utils/watch";
 
 type Obj = {
   id: string;
@@ -20,7 +19,7 @@ const CardList = ({ isLoggedIn }: PropTypes) => {
 
   useEffect(() => {
     const fetchShows = async () => {
-      const response = await axios.get(`${API_URL}/api/watches`);
+      const response = await getAll();
       setWatches(response.data);
       setIsFetching(false);
       // console.log(response.data);
