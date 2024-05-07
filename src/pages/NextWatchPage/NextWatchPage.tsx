@@ -64,7 +64,7 @@ const NextWatchPage = ({ user, updateUser }: PropTypes) => {
   const deleteNextWatch = async (id: string) => {
     console.log(id);
     try {
-      const response = await deleteOne(id);
+      await deleteOne(id);
       // console.log(response);
       fetchNextWatches();
     } catch (error) {
@@ -75,7 +75,10 @@ const NextWatchPage = ({ user, updateUser }: PropTypes) => {
   const shareNextWatch = async () => {
     try {
       await updateShare();
-      updateUser({ ...user, share: !user.share });
+      if (user) {
+        const newUser = { ...user, share: !user.share };
+        updateUser(newUser);
+      }
     } catch (error) {
       console.log("can't share", error);
     }
