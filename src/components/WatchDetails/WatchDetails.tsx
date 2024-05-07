@@ -1,7 +1,7 @@
 import axios from "axios";
 import Button from "../Button/Button";
 import "./WatchDetails.scss";
-import YouTube from "react-youtube";
+import YouTube, { YouTubeEvent } from "react-youtube";
 import { API_URL } from "../../utils/api";
 import { useEffect, useState } from "react";
 
@@ -54,7 +54,8 @@ const WatchDetails = ({ watchObj }: watchDetailsProps) => {
       autoplay: 0,
     },
   };
-  const onReady: (e: React.SyntheticEvent) => void = (event) => {
+
+  const onReady: (e: YouTubeEvent) => void = (event) => {
     // access to player in all event handlers via event.target
     event.target.pauseVideo();
   };

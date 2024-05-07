@@ -40,8 +40,8 @@ const UserForm = ({ type, handleSubmit }: UserFormProps) => {
     <>
       <form
         className="user-form"
-        onSubmit={() => {
-          handleSubmit(event, user);
+        onSubmit={(e) => {
+          handleSubmit(e, user);
         }}
       >
         <div className="user-form__entry">
