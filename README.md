@@ -71,6 +71,10 @@ TMDB: seedData.js is the script wrote to fetch and sanitize the initail data fro
 
 #### Signup Page
 
+mobile view
+
+![](screenshots/signup-mobile.png)
+
 tablet/desktop view
 
 ![](screenshots/signup-tablet-desktop.png)
