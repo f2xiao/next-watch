@@ -61,6 +61,11 @@ input {
   @include responsive-property(padding-left, 2rem, 2rem);
 }
 
+input[type="password"] {
+  -webkit-text-security: disc; /* Safari and Chrome */
+  text-security: disc; /* Other browsers */
+}
+
 textarea {
   resize: none;
 }

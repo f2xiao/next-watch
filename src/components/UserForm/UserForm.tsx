@@ -77,7 +77,7 @@ const UserForm = ({ type, handleSubmit }: UserFormProps) => {
             password
           </label>
           <input
-            type="text"
+            type="password"
             name="password"
             id="password"
             onChange={handleUserChange}
