@@ -47,8 +47,10 @@ button {
   font-family: "Manrope", Helvetica, sans-serif;
 }
 
+a,
+a:active,
 a:visited {
-  color: inherit;
+  color: $color-text;
 }
 
 input {
