@@ -4,9 +4,19 @@ import { useNavigate } from "react-router-dom";
 // import CardList from "../../components/CardList/CardList";
 import { signup } from "../../utils/auth";
 import Banner from "../../components/Banner/Banner";
+import { useEffect } from "react";
 
-const SignUpPage = () => {
+type PropTypes = {
+  isLoggedIn: boolean;
+};
+
+const SignUpPage = ({ isLoggedIn }: PropTypes) => {
   const navigate = useNavigate();
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/watches");
+    }
+  });
 
   return (
     <div className="signup-page">

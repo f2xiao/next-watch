@@ -28,7 +28,6 @@ export const login =
         // console.log(response.data);
         localStorage.setItem("authToken", response.data.token);
         window.location.reload();
-        // navigate("/watches");
       }
     } catch (error) {
       console.log("Request failed", error);

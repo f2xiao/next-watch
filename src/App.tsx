@@ -1,7 +1,7 @@
 import "./App.scss";
 import LoginPage from "./pages/LoginPage/LoginPage";
-// import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
-import { HashRouter, Routes, Route, Navigate, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+// import { HashRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import WatchListPage from "./pages/WatchListPage/WatchListPage";
 import WatchDetailsPage from "./pages/WatchDetailsPage/WatchDetailsPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
@@ -24,6 +24,8 @@ type User = {
 
 function App() {
   const [user, setUser] = useState<null | User>(null);
+  const [isLoggedin, setIsLoggedIn] = useState(false);
+
   const getUser: (authToken: string) => void = async (authToken) => {
     const response = await axios.get(`${API_URL}/api/users`, {
       headers: {
@@ -33,6 +35,7 @@ function App() {
     console.log(response.data);
 
     setUser(response.data);
+    setIsLoggedIn(true);
   };
   const authToken = localStorage.getItem("authToken");
   useEffect(() => {
@@ -48,14 +51,13 @@ function App() {
   };
 
   return (
-    // <BrowserRouter>
-    <HashRouter>
+    <BrowserRouter>
       <div className="app">
         <Routes>
-          <Route path="/" element={<HomePage user={user} />}>
+          <Route path="/" element={<HomePage isLoggedIn={isLoggedin} />}>
             <Route
               path="/login"
-              element={!user ? <LoginPage /> : <Navigate to="/watches" />}
+              element={<LoginPage isLoggedIn={isLoggedin} />}
             />
             <Route
               path="/nextwatch"
@@ -70,7 +72,7 @@ function App() {
           </Route>
           <Route
             path="/signup"
-            element={user ? <Navigate to="/watches" /> : <SignUpPage />}
+            element={<SignUpPage isLoggedIn={isLoggedin} />}
           />
           <Route
             path="*"
@@ -85,8 +87,7 @@ function App() {
           />
         </Routes>
       </div>
-      {/* </BrowserRouter> */}
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 

@@ -3,10 +3,21 @@ import "./LoginPage.scss";
 import UserForm from "../../components/UserForm/UserForm";
 import { login } from "../../utils/auth";
 import Banner from "../../components/Banner/Banner";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
-const LoginPage = () => {
-  // const navigate = useNavigate();
+type PropTypes = {
+  isLoggedIn: boolean;
+};
+
+const LoginPage = ({ isLoggedIn }: PropTypes) => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/watches");
+    }
+  });
   return (
     <div className="login-page">
       <h1>Login</h1>
