@@ -1,6 +1,7 @@
 import "./App.scss";
 import LoginPage from "./pages/LoginPage/LoginPage";
-import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
+// import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import WatchListPage from "./pages/WatchListPage/WatchListPage";
 import WatchDetailsPage from "./pages/WatchDetailsPage/WatchDetailsPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
@@ -47,7 +48,8 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
+    // <BrowserRouter>
+    <HashRouter>
       <div className="app">
         <Routes>
           <Route path="/" element={<HomePage user={user} />}>
@@ -83,7 +85,8 @@ function App() {
           />
         </Routes>
       </div>
-    </BrowserRouter>
+      {/* </BrowserRouter> */}
+    </HashRouter>
   );
 }
 
