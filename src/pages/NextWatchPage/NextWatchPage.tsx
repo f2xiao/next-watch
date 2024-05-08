@@ -100,10 +100,10 @@ const NextWatchPage = ({ user, updateUser }: PropTypes) => {
   return (
     <div>
       <Nav
-        link1="/watches"
-        link1_text="Home"
-        link2="/shared"
-        link2_text="shared"
+        linkArray={[
+          { link: "/watches", text: "home" },
+          { link: "/shared", text: "shared" },
+        ]}
         username={user?.username}
       />
       <h1>NexWatch</h1>

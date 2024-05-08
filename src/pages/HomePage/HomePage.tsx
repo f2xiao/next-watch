@@ -25,7 +25,7 @@ const HomePage = ({ isLoggedIn }: PropTypes) => {
   useEffect(() => {
     // const authToken = localStorage.getItem("authToken");
     // console.log(user);
-    console.log(location.pathname);
+    // console.log(location.pathname);
 
     if (!isLoggedIn) {
       navigate("/login");

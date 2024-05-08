@@ -16,10 +16,10 @@ const WatchListPage = ({ user }: PropTypes) => {
   return (
     <div className="next-watch-list-page">
       <Nav
-        link1="/nextwatch"
-        link1_text="Nextwatch"
-        link2="/shared"
-        link2_text="shared"
+        linkArray={[
+          { link: "/nextwatch", text: "nextwatch" },
+          { link: "/shared", text: "shared" },
+        ]}
         username={user?.username}
       />
       <CardList isLoggedIn={Boolean(user)} />

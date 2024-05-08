@@ -45,10 +45,10 @@ const SharedPage = ({ user }: PropType) => {
   return (
     <div className="shared-page">
       <Nav
-        link1="/"
-        link1_text="home"
-        link2="/nextwatch"
-        link2_text="nextwatch"
+        linkArray={[
+          { link: "/", text: "home" },
+          { link: "/nextwatch", text: "nextwatch" },
+        ]}
         username={user?.username}
       />
       {isFetching ? (

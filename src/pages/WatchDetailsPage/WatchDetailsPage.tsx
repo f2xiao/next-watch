@@ -49,10 +49,11 @@ const WatchDetailsPage = ({ user }: PropType) => {
   return (
     <div>
       <Nav
-        link1="/watches"
-        link1_text="Home"
-        link2="/nextwatch"
-        link2_text="Nextwatch"
+        linkArray={[
+          { link: "/watches", text: "Home" },
+          { link: "/nextwatch", text: "nextwatch" },
+          { link: "/shared", text: "shared" },
+        ]}
         username={user?.username}
       />
       <WatchDetails watchObj={data} />
