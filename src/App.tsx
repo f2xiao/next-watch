@@ -1,18 +1,14 @@
 import "./App.scss";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-// import { HashRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import WatchListPage from "./pages/WatchListPage/WatchListPage";
 import WatchDetailsPage from "./pages/WatchDetailsPage/WatchDetailsPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
-
 import NextWatchPage from "./pages/NextWatchPage/NextWatchPage";
-
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { API_URL } from "./utils/api";
 import HomePage from "./pages/HomePage/HomePage";
 import SharedPage from "./pages/SharedPage/SharedPage";
+import { getOne } from "./utils/user";
 
 type User = {
   username: string;
@@ -26,13 +22,9 @@ function App() {
   const [user, setUser] = useState<null | User>(null);
   const [isLoggedin, setIsLoggedIn] = useState(false);
 
-  const getUser: (authToken: string) => void = async (authToken) => {
-    const response = await axios.get(`${API_URL}/api/users`, {
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-      },
-    });
-    console.log(response.data);
+  const fetchUser: () => void = async () => {
+    const response = await getOne();
+    // console.log(response.data);
 
     setUser(response.data);
     setIsLoggedIn(true);
@@ -40,7 +32,7 @@ function App() {
   const authToken = localStorage.getItem("authToken");
   useEffect(() => {
     if (authToken) {
-      getUser(authToken);
+      fetchUser();
     }
   }, [authToken]);
 

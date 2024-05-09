@@ -34,7 +34,7 @@ const SharedPage = ({ user }: PropType) => {
   useEffect(() => {
     const fetchAllShared = async () => {
       const response = await getAllShared();
-      console.log(response.data);
+      // console.log(response.data);
       setData(response.data);
       setIsFetching(false);
     };

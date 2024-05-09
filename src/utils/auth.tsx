@@ -10,7 +10,7 @@ export const login =
   // (navigate: (route: string) => void) =>
   () => async (event: React.SyntheticEvent, user: User) => {
     event.preventDefault();
-    console.log(user);
+    // console.log(user);
     const { username, password } = user;
     //login the user
     try {
@@ -38,7 +38,7 @@ export const signup =
   (navigate: (route: string) => void) =>
   async (event: React.SyntheticEvent, user: User) => {
     event.preventDefault();
-    console.log(user);
+    // console.log(user);
     const { username, password, email } = user;
     //login the user
     try {
@@ -53,7 +53,7 @@ export const signup =
       }
 
       if (response.status === 201) {
-        console.log(response.data);
+        // console.log(response.data);
         navigate("/login");
       }
     } catch (error) {

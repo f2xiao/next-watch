@@ -2,7 +2,7 @@
 
 NextWatch
 
-[Deployment on Render](https://next-watch.onrender.com/)
+[Deployment on Render](https://next-watch.onrender.com)
 
 ## Overview
 

@@ -59,7 +59,7 @@ const NextWatchPage = ({ user, updateUser }: PropTypes) => {
   }, []);
 
   const deleteNextWatch = async (id: string) => {
-    console.log(id);
+    // console.log(id);
     try {
       await deleteOne(id);
       // console.log(response);
@@ -82,7 +82,7 @@ const NextWatchPage = ({ user, updateUser }: PropTypes) => {
   };
 
   const updateRating = async (id: string) => {
-    console.log(id);
+    // console.log(id);
     try {
       console.log("rating", newRating);
 
@@ -93,7 +93,7 @@ const NextWatchPage = ({ user, updateUser }: PropTypes) => {
     }
   };
   const updateValue = (value: string) => {
-    console.log("value", value);
+    // console.log("value", value);
     setNewRating(value);
   };
 
