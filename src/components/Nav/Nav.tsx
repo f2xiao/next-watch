@@ -20,7 +20,9 @@ const Nav = ({ linkArray, username }: PropTypes) => {
       <div className="nav__link">
         <img className="nav__logo" src={logoUrl} alt="nextwatch logo" />
         {linkArray.map((obj) => (
-          <Link to={obj.link}>{obj.text}</Link>
+          <Link key={obj.text} to={obj.link}>
+            {obj.text}
+          </Link>
         ))}
       </div>
       <div className="nav__user">

@@ -66,6 +66,10 @@ input[type="password"] {
   text-security: disc; /* Other browsers */
 }
 
+iframe {
+  max-width: 100%;
+}
+
 textarea {
   resize: none;
 }
