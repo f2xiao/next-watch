@@ -103,6 +103,20 @@
 //     width: 9.375rem;
 //   }
 // }
+// call to action button
+@mixin button {
+  @include responsive-property(width, 100%, 50%);
+  margin: 1rem 0;
+  padding: 0.5rem 0;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+@mixin cta{
+  @include responsive-property(max-width, 100%, 25rem, 28rem);
+  @include flex;
+  justify-content: end;
+}
 
 // logo
 @mixin logo {

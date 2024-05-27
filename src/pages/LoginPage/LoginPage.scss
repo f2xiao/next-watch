@@ -6,4 +6,12 @@
   @include flex(column);
   justify-content: center;
   // align-items: center;
+
+  &__cta{
+    @include cta;
+  }
+
+  &__button{
+    @include button;
+  }
 }
