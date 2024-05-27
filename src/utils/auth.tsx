@@ -34,6 +34,34 @@ export const login =
     }
   };
 
+  export const loginTestUser =
+  // (navigate: (route: string) => void) =>
+  () => async () => {
+    // console.log(user);
+    const username = import.meta.env.VITE_TEST_USERNAME;
+    const password = import.meta.env.VITE_TEST_PASSWORD;
+    //login the user
+    try {
+      const response = await loginUser({
+        username,
+        password,
+      });
+
+      if (response.status === 401) {
+        console.log("Invalid username or password");
+      }
+
+      if (response.status === 200) {
+        // save the token to the localStorage
+        // console.log(response.data);
+        localStorage.setItem("authToken", response.data.token);
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log("Request failed", error);
+    }
+  };
+
 export const signup =
   (navigate: (route: string) => void) =>
   async (event: React.SyntheticEvent, user: User) => {
