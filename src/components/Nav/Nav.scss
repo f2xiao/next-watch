@@ -11,12 +11,13 @@
     @include logo;
   }
   &__link {
-    @include flex;
+    @include flex-cross-center;
     gap: 1rem;
     text-transform: capitalize;
   }
   &__user {
-    @include flex;
+    @include flex-cross-center;
     gap: 1rem;
   }
+
 }
