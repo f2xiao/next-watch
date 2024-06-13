@@ -4,5 +4,6 @@
   @include responsive-margin;
   @include flex(column);
   justify-content: center;
+  width: 100%;
   // align-items: center;
 }
