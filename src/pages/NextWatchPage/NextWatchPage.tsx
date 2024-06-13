@@ -98,7 +98,7 @@ const NextWatchPage = ({ user, updateUser }: PropTypes) => {
   };
 
   return (
-    <div>
+    <div className="nextwatch-page">
       <Nav
         linkArray={[
           { link: "/watches", text: "home" },
