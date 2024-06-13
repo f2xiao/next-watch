@@ -1,0 +1,8 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.footer {
+  @include flex;
+  justify-content: end;
+  margin-bottom: 1rem;
+}

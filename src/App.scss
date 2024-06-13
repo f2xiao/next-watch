@@ -3,6 +3,13 @@
 .app {
   min-height: 100vh;
   @include responsive-margin;
+  @include flex(column);
+
+  &__content {
+    flex-grow: 1;
+    @include flex;
+  }
+
   &__notfound-page {
     @include flex;
     height: 100vh;

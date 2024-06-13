@@ -1,5 +1,6 @@
 import "./App.scss";
 import LoginPage from "./pages/LoginPage/LoginPage";
+
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import WatchListPage from "./pages/WatchListPage/WatchListPage";
 import WatchDetailsPage from "./pages/WatchDetailsPage/WatchDetailsPage";
@@ -9,6 +10,7 @@ import { useEffect, useState } from "react";
 import HomePage from "./pages/HomePage/HomePage";
 import SharedPage from "./pages/SharedPage/SharedPage";
 import { getOne } from "./utils/user";
+import Footer from "./components/Footer/Footer";
 
 type User = {
   username: string;
@@ -45,39 +47,42 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app">
-        <Routes>
-          <Route path="/" element={<HomePage isLoggedIn={isLoggedin} />}>
+        <div className="app__content">
+          <Routes>
+            <Route path="/" element={<HomePage isLoggedIn={isLoggedin} />}>
+              <Route
+                path="/login"
+                element={<LoginPage isLoggedIn={isLoggedin} />}
+              />
+              <Route
+                path="/nextwatch"
+                element={<NextWatchPage user={user} updateUser={updateUser} />}
+              />
+              <Route
+                path="watches/:id"
+                element={<WatchDetailsPage user={user} />}
+              />
+              <Route path="/watches" element={<WatchListPage user={user} />} />
+              <Route path="/shared" element={<SharedPage user={user} />} />
+            </Route>
             <Route
-              path="/login"
-              element={<LoginPage isLoggedIn={isLoggedin} />}
+              path="/signup"
+              element={<SignUpPage isLoggedIn={isLoggedin} />}
             />
             <Route
-              path="/nextwatch"
-              element={<NextWatchPage user={user} updateUser={updateUser} />}
+              path="*"
+              element={
+                <div className="app__notfound-page">
+                  Not Found 404 🥲. Go back to{" "}
+                  <Link className="app__link" to="/">
+                    homepage
+                  </Link>
+                </div>
+              }
             />
-            <Route
-              path="watches/:id"
-              element={<WatchDetailsPage user={user} />}
-            />
-            <Route path="/watches" element={<WatchListPage user={user} />} />
-            <Route path="/shared" element={<SharedPage user={user} />} />
-          </Route>
-          <Route
-            path="/signup"
-            element={<SignUpPage isLoggedIn={isLoggedin} />}
-          />
-          <Route
-            path="*"
-            element={
-              <div className="app__notfound-page">
-                Not Found 404 🥲. Go back to{" "}
-                <Link className="app__link" to="/">
-                  homepage
-                </Link>
-              </div>
-            }
-          />
-        </Routes>
+          </Routes>
+        </div>
+        <Footer />
       </div>
     </BrowserRouter>
   );
