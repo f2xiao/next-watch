@@ -1,10 +1,11 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 .login-page {
-  min-height: 100vh;
+  // min-height: 100vh;
   @include responsive-margin;
   @include flex(column);
   justify-content: center;
+   width: 100%;
   // align-items: center;
 
   &__top{
@@ -48,4 +49,5 @@
       @include responsive-property(display, block, block,none);
     }
   }
+ 
 }

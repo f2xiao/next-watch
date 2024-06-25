@@ -1,6 +1,7 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 .nextwatch-page {
+  width: 100%;
   &__button {
     padding-top: 2rem;
     @include flex;
