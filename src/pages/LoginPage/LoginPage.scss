@@ -5,5 +5,49 @@
   @include responsive-margin;
   @include flex(column);
   justify-content: center;
-  width: 100%;
+   width: 100%;
+  // align-items: center;
+
+  &__top{
+    // @include flex;
+    @include responsive-property(display, block, flex)
+  }
+  &__box{
+    @include responsive-property(flex-basis, auto,100%);
+  }
+
+  &__text{
+    @include responsive-property(margin-top, 2rem, 0);
+    @include responsive-property(margin-left, 0, 4rem);
+    @include responsive-property(margin-right, 0, 4rem);
+    @include responsive-property(max-width,none, 28rem);
+    @include flex-main-center;
+    align-items: center
+  }
+
+  &__cta{
+    @include cta;
+    height: 100%;
+    width:100%;
+    @include flex-cross-center;
+    justify-content: center;
+    @include responsive-property(max-width,none, 25rem,none);
+  }
+
+  &__button{
+    @include button;
+    height: 40px;
+    @include responsive-property(width, 100%, 100%)
+  }
+
+  &__banner{
+    &--first{
+      @include responsive-property(display, none, none,block);
+    }
+
+    &--second{
+      @include responsive-property(display, block, block,none);
+    }
+  }
+ 
 }
