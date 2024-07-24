@@ -1,6 +1,7 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 .next-watch-list-page {
+  width: 100%;
   &__user {
     @include flex;
     align-items: center;

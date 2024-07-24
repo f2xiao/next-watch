@@ -43,11 +43,23 @@ const WatchDetailsPage = ({ user }: PropType) => {
   }, [id]);
 
   if (isFetching) {
-    return <p>... Loading data ...</p>;
+    return (
+      <div className="watch-details-page">
+        <Nav
+          linkArray={[
+            { link: "/watches", text: "Home" },
+            { link: "/nextwatch", text: "nextwatch" },
+            { link: "/shared", text: "shared" },
+          ]}
+          username={user?.username}
+        />
+        <p>... Loading data ...</p>
+      </div>
+    );
   }
 
   return (
-    <div>
+    <div className="watch-details-page">
       <Nav
         linkArray={[
           { link: "/watches", text: "Home" },
