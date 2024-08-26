@@ -7,6 +7,11 @@
   justify-content: center;
   width: 100%;
   // align-items: center;
+  padding-top: 2rem;
+
+  &__logo{
+    @include logo;
+  }
 
   &__top {
     // @include flex;
