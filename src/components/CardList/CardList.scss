@@ -6,4 +6,8 @@
   flex-wrap: wrap;
   // gap: 1rem;
   @include responsive-property(gap, 1rem, 2rem, 3rem);
+
+  &__loading {
+    @include responsive-property(width, 250px, 300px, 300px);
+  }
 }
