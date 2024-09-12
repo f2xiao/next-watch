@@ -1,37 +1,34 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
-.section{
-    display: flex;
-    flex-wrap: wrap;
-    width:100%;
-    @include responsive-property(padding, 1rem, 2.5rem);
-    justify-content: space-between;
+.section {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  @include responsive-property(padding, 1rem 0, 2.5rem 0);
+  justify-content: space-between;
 
-    will-change: filter;
-    transition: filter 300ms;
+  &--reverse {
+    flex-direction: row-reverse;
+  }
+  &__copy {
+    @include responsive-property(flex-basis, 100%, 30%);
+  }
+
+  &__text {
+    padding-bottom: 1rem;
+  }
+
+  &__wrapper {
+    @include responsive-property(flex-basis, 100%, 60%);
+  }
+
+  &__img {
+    width: 100%;
+    transition: all 1000ms ease;
 
     &:hover {
-        filter: drop-shadow(0 0 2em #646cffaa);
-      }
-    
-
-    &--reverse{
-        flex-direction: row-reverse;
+      scale: calc(1.05);
+      filter: drop-shadow(0 0 2em #646cffaa);
     }
-    &__copy{
-        @include responsive-property(flex-basis, 100%, 30%)
-    }
-
-    &__text{
-        text-transform: capitalize;
-        padding-bottom:1rem
-    }
-
-    &__wrapper{
-        @include responsive-property(flex-basis, 100%, 60%)
-    }
-
-    &__img{
-        width: 100%;
-    }
+  }
 }

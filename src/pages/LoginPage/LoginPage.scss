@@ -9,7 +9,7 @@
   // align-items: center;
   padding-top: 2rem;
 
-  &__logo{
+  &__logo {
     @include logo;
   }
 
@@ -52,6 +52,26 @@
 
     &--second {
       @include responsive-property(display, block, block, none);
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.3125rem;
+
+    &--second {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &--active {
+      background-color: #646cffaa;
+
+      &:hover {
+        background-color: #646cffee;
+      }
     }
   }
 }
