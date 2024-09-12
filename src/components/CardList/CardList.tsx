@@ -1,8 +1,10 @@
 import "./CardList.scss";
-import { useEffect, useState } from "react";
-import Card from "../../components/Card/Card";
+import React, { useEffect, useState, Suspense } from "react";
+// import Card from "../../components/Card/Card";
 import { Link } from "react-router-dom";
 import { getAll } from "../../utils/watch";
+
+const LazyCard = React.lazy(() => import("../../components/Card/Card"));
 
 type Obj = {
   id: string;
@@ -22,7 +24,7 @@ const CardList = ({ isLoggedIn }: PropTypes) => {
       const response = await getAll();
       setWatches(response.data);
       setIsFetching(false);
-      // console.log(response.data);
+      console.log(response.data);
     };
     fetchShows();
   }, []);
@@ -37,10 +39,14 @@ const CardList = ({ isLoggedIn }: PropTypes) => {
         <div key={obj.id} className="card-list__item">
           {isLoggedIn ? (
             <Link to={`/watches/${obj.id}`}>
-              <Card title={obj.title} backdrop={obj.backdropUrl} />
+              <Suspense fallback={<div>Loading...</div>}>
+                <LazyCard title={obj.title} backdrop={obj.backdropUrl} />
+              </Suspense>
             </Link>
           ) : (
-            <Card title={obj.title} backdrop={obj.backdropUrl} />
+            <Suspense fallback={<div>Loading...</div>}>
+              <LazyCard title={obj.title} backdrop={obj.backdropUrl} />
+            </Suspense>
           )}
         </div>
       ))}

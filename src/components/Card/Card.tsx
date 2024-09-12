@@ -8,7 +8,7 @@ type CardProps = {
 const Card = ({ title, backdrop }: CardProps) => {
   return (
     <div className="card">
-      <img className="card__img" src={backdrop} alt={title} />
+      <img className="card__img" src={backdrop} alt={title} loading="lazy" />
       <h2 className="card__title">{title}</h2>
     </div>
   );
