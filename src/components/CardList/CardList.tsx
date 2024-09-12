@@ -39,12 +39,16 @@ const CardList = ({ isLoggedIn }: PropTypes) => {
         <div key={obj.id} className="card-list__item">
           {isLoggedIn ? (
             <Link to={`/watches/${obj.id}`}>
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense
+                fallback={<div className="card-list__loading">Loading...</div>}
+              >
                 <LazyCard title={obj.title} backdrop={obj.backdropUrl} />
               </Suspense>
             </Link>
           ) : (
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense
+              fallback={<div className="card-list__loading">Loading...</div>}
+            >
               <LazyCard title={obj.title} backdrop={obj.backdropUrl} />
             </Suspense>
           )}
