@@ -18,7 +18,13 @@ const Nav = ({ linkArray, username }: PropTypes) => {
   return (
     <nav className="nav">
       <div className="nav__link">
-        <img className="nav__logo" src={logoUrl} alt="nextwatch logo" />
+        <img
+          className="nav__logo"
+          src={logoUrl}
+          alt="nextwatch logo"
+          height="25px"
+          width="25px"
+        />
         {linkArray.map((obj) => (
           <Link key={obj.text} to={obj.link}>
             {obj.text}
