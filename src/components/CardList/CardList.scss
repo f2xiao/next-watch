@@ -4,10 +4,11 @@
 .card-list {
   @include flex-main-center;
   flex-wrap: wrap;
-  // gap: 1rem;
-  @include responsive-property(gap, 1rem, 2rem, 3rem);
+  // gap: 16px;
+  @include responsive-property(gap, 16px, 32px, 48px);
 
   &__loading {
-    @include responsive-property(width, 250px, 300px, 300px);
+    width: 18.75rem;
+    height: 10.9375rem;
   }
 }
