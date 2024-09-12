@@ -24,7 +24,7 @@ const CardList = ({ isLoggedIn }: PropTypes) => {
       const response = await getAll();
       setWatches(response.data);
       setIsFetching(false);
-      console.log(response.data);
+      // console.log(response.data);
     };
     fetchShows();
   }, []);
