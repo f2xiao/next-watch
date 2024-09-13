@@ -10,6 +10,7 @@ import {
 } from "../../utils/nextwatch";
 import { updateShare } from "../../utils/user";
 import RatingRange from "../../components/RatingRange/RatingRange";
+import RatingStars from "../../components/RatingStars/RatingStars";
 
 type Watch = {
   id: string;
@@ -129,9 +130,16 @@ const NextWatchPage = ({ user, updateUser }: PropTypes) => {
                       {obj.watch_id.title}
                     </Link>
                   </td>
-                  <td>
+                  {/* <td>
                     <RatingRange
                       initialValue={obj.rating}
+                      updateValue={updateValue}
+                    />
+                  </td> */}
+                  <td>
+                    <RatingStars
+                      initialValue={obj.rating}
+                      maxRating={10}
                       updateValue={updateValue}
                     />
                   </td>

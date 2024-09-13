@@ -30,7 +30,7 @@ const WatchDetails = ({ watchObj }: watchDetailsProps) => {
           setNextWatchId(response.data.id);
         }
       } catch (error) {
-        console.log("it's not in the nextwatch list", error);
+        // console.log("it's not in the nextwatch list", error);
       }
     };
 
