@@ -10,7 +10,6 @@ import { useEffect, useState } from "react";
 import HomePage from "./pages/HomePage/HomePage";
 import SharedPage from "./pages/SharedPage/SharedPage";
 import { getOne } from "./utils/user";
-import Footer from "./components/Footer/Footer";
 
 type User = {
   username: string;
