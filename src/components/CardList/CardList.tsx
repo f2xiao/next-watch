@@ -1,6 +1,5 @@
 import "./CardList.scss";
 import React, { useEffect, useState, Suspense } from "react";
-// import Card from "../../components/Card/Card";
 import { Link } from "react-router-dom";
 import { getAll } from "../../utils/watch";
 
