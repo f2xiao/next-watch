@@ -50,10 +50,7 @@ function App() {
         <div className="app__content">
           <Routes>
             <Route path="/" element={<HomePage isLoggedIn={isLoggedin} />}>
-            <Route
-                path="/"
-                element={<LoginPage isLoggedIn={isLoggedin} />}
-              />
+              <Route path="/" element={<LoginPage isLoggedIn={isLoggedin} />} />
               <Route
                 path="/login"
                 element={<LoginPage isLoggedIn={isLoggedin} />}
@@ -86,7 +83,6 @@ function App() {
             />
           </Routes>
         </div>
-        <Footer />
       </div>
     </BrowserRouter>
   );

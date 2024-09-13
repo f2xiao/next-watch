@@ -13,8 +13,9 @@ const Card = ({ title, backdrop }: CardProps) => {
         src={backdrop}
         alt="poster"
         loading="lazy"
-        width="300"
-        height="100%"
+        width="500"
+        height="281"
+        style={{ maxWidth: "100vw" }}
       />
       <h2 className="card__title">{title}</h2>
     </div>

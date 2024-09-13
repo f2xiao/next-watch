@@ -11,6 +11,7 @@ import whatUrl from "../../assets/images/home_what.png";
 import howUrl from "../../assets/images/home_how.png";
 import shareUrl from "../../assets/images/home_share.png";
 import logoUrl from "../../assets/logo/nextwatch-white.svg";
+import Footer from "../../components/Footer/Footer";
 
 type PropTypes = {
   isLoggedIn: boolean;
@@ -100,6 +101,7 @@ const LoginPage = ({ isLoggedIn }: PropTypes) => {
       <div className="login-page__banner login-page__banner--second">
         <Banner />
       </div>
+      <Footer />
     </div>
   );
 };

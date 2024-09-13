@@ -4,5 +4,5 @@
 .footer {
   @include flex;
   margin-bottom: 1rem;
-  @include responsive-property(justify-content, center, end);
+  justify-content: center;
 }

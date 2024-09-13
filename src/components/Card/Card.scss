@@ -3,8 +3,9 @@
 .card {
   position: relative;
   transition: scale 0.3s ease;
-  width: 18.75rem;
-  height: 100%;
+  width: 500px;
+  height: 281px;
+  max-width: 100vw;
 
   &:hover {
     scale: 0.8;
