@@ -9,7 +9,6 @@ import {
   updateNextwatchRating,
 } from "../../utils/nextwatch";
 import { updateShare } from "../../utils/user";
-import RatingRange from "../../components/RatingRange/RatingRange";
 import RatingStars from "../../components/RatingStars/RatingStars";
 
 type Watch = {
