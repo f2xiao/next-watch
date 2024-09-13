@@ -4,6 +4,16 @@ import { getAllShared } from "../../utils/user";
 import Nav from "../../components/Nav/Nav";
 import { Link } from "react-router-dom";
 
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-cards";
+
+// import required modules
+import { EffectCards } from "swiper/modules";
+
 type User = {
   username: string;
   emial: string;
@@ -60,13 +70,27 @@ const SharedPage = ({ user }: PropType) => {
               <p className="shared-page__username">{`from ${
                 obj.username === user?.username ? "me" : obj.username
               }`}</p>
-              <ul>
+              <Swiper
+                effect={"cards"}
+                grabCursor={true}
+                modules={[EffectCards]}
+                className="mySwiper"
+              >
                 {obj.nextwatches.map((nextwatch) => (
-                  <li
-                    key={nextwatch.watch_id}
-                    style={{ width: `${100 / obj.nextwatches.length}%` }}
-                  >
-                    {/* <div>{`${index + 1}/${obj.nextwatches.length}`}</div> */}
+                  // <li
+                  //   key={nextwatch.watch_id}
+                  //   style={{ width: `${100 / obj.nextwatches.length}%` }}
+                  // >
+                  //   <Link to={`/watches/${nextwatch.watch_id}`}>
+                  //     <img
+                  //       className="shared-page__img"
+                  //       alt={`${nextwatch.title} poster`}
+                  //       src={nextwatch.posterUrl}
+                  //     />
+                  //   </Link>
+                  // </li>
+
+                  <SwiperSlide key={nextwatch.watch_id}>
                     <Link to={`/watches/${nextwatch.watch_id}`}>
                       <img
                         className="shared-page__img"
@@ -74,10 +98,9 @@ const SharedPage = ({ user }: PropType) => {
                         src={nextwatch.posterUrl}
                       />
                     </Link>
-                    {/* <div>${nextwatch.title}</div> */}
-                  </li>
+                  </SwiperSlide>
                 ))}
-              </ul>
+              </Swiper>
             </div>
           ))}
         </div>
