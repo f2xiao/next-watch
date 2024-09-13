@@ -20,6 +20,20 @@ const UserForm = ({ type, handleSubmit }: UserFormProps) => {
     password: "",
   });
 
+  const [errors, setErrors] = useState({
+    username: false,
+    email: false,
+    password: false,
+  });
+
+  const patterns: { [key: string]: RegExp } = {
+    username: /^[a-zA-Z0-9](?:[._]?[a-zA-Z0-9]){2,}$/,
+    email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+    password: /^[a-zA-Z0-9!@#$%^&*]{6,}$/,
+  };
+
+  const validateFn = (pattern: RegExp, value: string) => !pattern.test(value);
+
   // const secondLink = type === "login" ? "/signup" : "/login";
   const secondLinkText = type === "login" ? "signup" : "login";
 
@@ -34,6 +48,11 @@ const UserForm = ({ type, handleSubmit }: UserFormProps) => {
       [name]: value,
     }));
     // console.log(user);
+
+    setErrors((prevState) => ({
+      ...prevState,
+      [name]: validateFn(patterns[name], value),
+    }));
   };
 
   return (
@@ -55,6 +74,11 @@ const UserForm = ({ type, handleSubmit }: UserFormProps) => {
             onChange={handleUserChange}
             value={user.username}
           />
+          {errors.username && (
+            <p className="user-form__error">
+              Please enter a username of a min length of 3
+            </p>
+          )}
         </div>
         {type === "signup" ? (
           <div className="user-form__entry">
@@ -68,6 +92,10 @@ const UserForm = ({ type, handleSubmit }: UserFormProps) => {
               onChange={handleUserChange}
               value={user.email}
             />
+
+            {errors.email && (
+              <p className="user-form__error">Please enter a valid email</p>
+            )}
           </div>
         ) : (
           ""
@@ -83,6 +111,12 @@ const UserForm = ({ type, handleSubmit }: UserFormProps) => {
             onChange={handleUserChange}
             value={user.password}
           />
+
+          {errors.password && (
+            <p className="user-form__error">
+              Please enter a password of a min length of 6
+            </p>
+          )}
         </div>
         <div className="user-form__cta">
           <button className="user-form__button" type="submit">

@@ -15,11 +15,19 @@
     padding-bottom: 0.5rem;
   }
 
+  &__input {
+  }
+
   &__cta {
-   @include cta;
+    @include cta;
   }
 
   &__button {
     @include button;
+  }
+
+  &__error {
+    color: red;
+    margin-top: 1rem;
   }
 }
